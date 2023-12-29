@@ -1,0 +1,111 @@
+{
+	"Type": "List",
+	"Var": {
+		"GetPackages": {
+			"Cmt": "Extract Packages?",
+			"Type": "Bool",
+			"Val": "@ ? Bool"
+		},
+		"File": {
+			"Type": "Path",
+			"Val": "@ ? Path_File"
+		},
+		"Dir": {
+			"Type": "Path",
+			"Val": "@ $ File #. Path_SetSuffix dir"
+		},
+		"ResInfoFile": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "ResInfo.json" ]
+		},
+		"RawOriResInfoFile": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "Res", "properties", "resources.rton" ]
+		},
+		"OriResInfoFile": {
+			"Type": "Path",
+			"Val": "@ $ RawOriResInfoFile #. Path_SetPrefix ~"
+		}
+	},
+	"Task": [ {
+			"EnAble": true,
+			"Type": "Call",
+			"Func": [ "ResPkgUtil", "RSBUtil", "Packer", "UnPack" ],
+			"Parm": {
+				"PkgFile": "@ $ File",
+				"MainDir": "@ $ Dir",
+				"OutPut_Res": false,
+				"OutPut_Packet": true,
+				"OutPut_PacketInfo": false,
+				"OutPut_Group": false,
+				"OutPut_Group_Res": false,
+				"OutPut_Group_Packet": false
+			}
+		}, {
+			"Type": "Call",
+			"Func": [ "DevUtil", "ReName", "File" ],
+			"Parm": {
+				"SrcPath": [ "@P $ Dir", "StructInfo.json" ],
+				"DstPath": [ "@P $ Dir", "_StructInfo.json" ]
+			}
+		}, {
+			"EnAble": "@ $ GetPackages",
+			"Type": "Call",
+			"Func": [ "ResPkgUtil", "RSGPUtil", "Packer", "UnPack" ],
+			"Parm": {
+				"PkgFile": [ "@P $ Dir", "Packet", "Packages.rsgp" ],
+				"MainDir": "@ $ Dir"
+			}
+		}, {
+			"EnAble": "@ $ GetPackages",
+			"Type": "Call",
+			"Func": [ "DevUtil", "ReMov", "File" ],
+			"Parm": {
+				"Path": [ "@P $ Dir", "Packet", "Packages.rsgp" ]
+			}
+		}, {
+			"Type": "Call",
+			"Func": [ "ResPkgUtil", "RSGPUtil", "Packer", "UnPack" ],
+			"Parm": {
+				"PkgFile": [ "@P $ Dir", "Packet", "__MANIFESTGROUP__.rsgp" ]
+				"MainDir": "@ $ Dir"
+			}
+		}, {
+			"Type": "Call",
+			"Func": [ "DevUtil", "ReMov", "File" ],
+			"Parm": {
+				"Path": [ "@P $ Dir", "Packet", "__MANIFESTGROUP__.rsgp" ]
+			}
+		}, {
+			"Type": "Call",
+			"Func": [ "DevUtil", "ReMov", "File" ],
+			"Parm": {
+				"Path": [ "@P $ Dir", "StructInfo.json" ]
+			}
+		}, {
+			"Type": "Call",
+			"Func": [ "DevUtil", "ReName", "File" ],
+			"Parm": {
+				"SrcPath": [ "@P $ Dir", "_StructInfo.json" ],
+				"DstPath": [ "@P $ Dir", "StructInfo.json" ]
+			}
+		}, {
+			"Type": "Call",
+			"Func": [ "RTONUtil", "Encoder", "DeCode" ],
+			"Parm": {
+				"RTONFile": "@ $ RawOriResInfoFile",
+				"JSONFile": "@ $ OriResInfoFile",
+				"RTONDataOfs": 0
+			}
+		}, {
+			"Type": "Call",
+			"Func": [ "InfoUtil", "Cnv" ],
+			"Parm": {
+				"SrcInfoType": "ResPkgInfo_Ori",
+				"DstInfoType": "ResPkgInfo",
+				"SrcInfoFile": "@ $ OriResInfoFile",
+				"DstInfoFile": "@ $ ResInfoFile",
+				"AppendInfoFile": [ "NULL" ]
+			}
+		} ]
+}

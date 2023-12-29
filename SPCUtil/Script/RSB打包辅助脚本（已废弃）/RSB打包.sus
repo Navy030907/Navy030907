@@ -1,0 +1,17 @@
+{
+	"Cmt": "此脚本用于打包一个 RSB 文件，请选择RSB文件夹（后缀为.rsb.dir），运行时默认使用1G内存，可在文件中修改占用大小，但不得低于包体最终大小",
+	"Type": "Call",
+	"Func": [ "ResPkgUtil", "RSBUtil", "Packer", "Pack_Trial" ],
+	"Var": {
+		"Dir": {
+			"Cmt": "选择RSB目录(.rsb.dir)",
+			"Type": "Path",
+			"Val": "@ ? Path_Dir"
+		}
+	},
+	"Parm": {
+		"PkgFile": "@ $ Dir # Path_EraseSuffix",
+		"MainDir": "@ $ Dir",
+		"MemorySize": "@ ! ByteSize_Str 1024M"
+	}
+}

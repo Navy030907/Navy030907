@@ -1,0 +1,21 @@
+{
+	"Type": "List",
+	"Var": {
+		"File": {
+			"Type": "Path",
+			"Val": "@ ? Path_File"
+		}
+	},
+	"Task": [ {
+		"Type": "Call",
+		"Func": [ "RTONUtil", "Encoder", "EnCode" ],
+		"Parm": {
+			"JSONFile": "@ $ File",
+			"RTONFile": "@ $ File # Path_EraseSuffix #. Path_SetSuffix rton",
+			"UseCacheStr": true,
+			"UseSpecialTypeForRTID": true,
+			"GetAllStrToTop": false,
+			"MemorySize": "@ ! ByteSize_Str 64M"
+		}
+	} ]
+}

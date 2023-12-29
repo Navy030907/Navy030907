@@ -1,0 +1,30 @@
+{
+	"Cmt": "此脚本将为选定的RSB文件夹打补丁，使用前需在目标目录中准备 ResInfoBak.json StructInfoBak.json 两个文件",
+	"Type": "Call",
+	"Func": [ "SpecialMod", "PvZ-2", "RSBPatch", "ApplyPatch" ],
+	"Var": {
+		"PatchDir": {
+			"Cmt": "选择补丁配置目录",
+			"Type": "Path",
+			"Val": "@ ? Path_Dir"
+		},
+		"DstDir": {
+			"Cmt": "选择目标目录（由RSB解包出的文件夹）",
+			"Type": "Path",
+			"Val": "@ ? Path_Dir"
+		}
+	},
+	"Parm": {
+		"ConfigDir": "@ $ PatchDir",
+		"PatchResInfo": true,
+		"SrcResInfoFile": "@ $ DstDir #. Path_AddLevel ResInfoSrc.json",
+		"DstResInfoFile": "@ $ DstDir #. Path_AddLevel ResInfo.json",
+		"PatchStructInfo": true,
+		"SrcStructInfoFile": "@ $ DstDir #. Path_AddLevel StructInfoSrc.json",
+		"DstStructInfoFile": "@ $ DstDir #. Path_AddLevel StructInfo.json",
+		"PatchRes": true,
+		"DstResDir": "@ $ DstDir #. Path_AddLevel Res",
+		"PatchGroup": true,
+		"DstGroupDir": "@ $ DstDir #. Path_AddLevel Group"
+	}
+}

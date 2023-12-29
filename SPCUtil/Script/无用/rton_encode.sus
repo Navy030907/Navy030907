@@ -1,0 +1,50 @@
+{
+	"Var": {
+		"Cnt": {
+			"Type": "Int",
+			"Val": 0
+		},
+		"DirIn": {
+			"Type": "Path",
+			"Val": [ "@P $ !STORAGE_DIR", "SPCUtil", "RTON-Encoder", "Src" ]
+		},
+		"DirOut": {
+			"Type": "Path",
+			"Val": [ "@P $ !STORAGE_DIR", "SPCUtil", "RTON-Encoder", "Dst" ]
+		},
+		"TypeFileSuffix": {
+			"Type": "Str",
+			"Val": "json"
+		},
+		"TypeFileList": {
+			"Type": "[Path",
+			"Val": "@ ! PathList_File $ DirIn #* PathList_FilterSuffix $ TypeFileSuffix"
+		}
+	},
+	"Type": "List",
+	"Task": [ {
+			"ReVarIntro": {
+				"Cnt": 0
+			},
+			"Var": {
+				"NewCnt": {
+					"Type": "Int",
+					"Val": "@ $ Cnt #. Int_Add 1"
+				}
+			},
+			"ReVarAfter": {
+				"Cnt": "@ $ NewCnt"
+			},
+			"Loop": [ "@ $ Cnt", "@ $] TypeFileList" ],
+			"Type": "Call",
+			"Func": [ "RTONUtil", "Encoder", "EnCode" ],
+			"Parm": {
+				"JSONFile": "@ $ DirIn #* Path_CatLevel $[* TypeFileList $ Cnt",
+				"RTONFile": "@ $ DirOut #* Path_CatLevel $[* TypeFileList $ Cnt # Path_EraseSuffix #. Path_SetSuffix rton",
+				"UseCacheStr": true,
+				"UseSpecialTypeForRTID": true,
+				"GetAllStrToTop": false,
+				"MemorySize": "@ ! ByteSize_Str 64M"
+			}
+		} ]
+}

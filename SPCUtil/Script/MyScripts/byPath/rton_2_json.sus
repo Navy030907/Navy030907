@@ -1,0 +1,18 @@
+{
+	"Type": "List",
+	"Var": {
+		"File": {
+			"Type": "Path",
+			"Val": "@ ? Path_File"
+		}
+	},
+	"Task": [ {
+		"Type": "Call",
+		"Func": [ "RTONUtil", "Encoder", "DeCode" ],
+		"Parm": {
+			"RTONFile": "@ $ File",
+			"JSONFile": "@ $ File # Path_EraseSuffix #. Path_SetSuffix json",
+			"RTONDataOfs": 0
+		}
+	} ]
+}

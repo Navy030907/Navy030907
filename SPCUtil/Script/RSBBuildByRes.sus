@@ -1,0 +1,156 @@
+{
+	"EnAble": true,
+	"Cmt": "生成RSB（依据ResID）",
+	"Type": "List",
+	"Var": {
+		"ReGenMANIFESTGROUP": {
+			"Cmt": "是否重新生成resources.json？",
+			"Type": "Bool",
+			"Val": "@ ? Bool"
+		},
+		"ResIDList": {
+			"Cmt": "输入ResID（可输入三个，ResID=0即代表Null）",
+			"Type": "[Int",
+			"Val": [ 0, 1536 ]
+		},
+		"File": {
+			"Cmt": "选择RSB文件",
+			"Type": "Path",
+			"Val": "@ ? Path_File"
+		},
+		"Dir": {
+			"Type": "Path",
+			"Val": "@ $ File #. Path_SetPrefix ~"
+		},
+		"PkgResInfoFile": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "ResInfo.json" ]
+		},
+		"PkgResInfoFile_Lite": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "ResInfo.json" ]
+		},
+		"PkgResInfoDir": {
+			"Type": "Path",
+			"Val": "@ $ PkgResInfoFile # Path_EraseSuffix"
+		},
+		"PkgStructInfoFile": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "StructInfo.json" ]
+		},
+		"PkgStructInfoFile_Lite": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "StructInfo.json" ]
+		},
+		"PkgStructInfoDir": {
+			"Type": "Path",
+			"Val": "@ $ PkgStructInfoFile # Path_EraseSuffix"
+		},
+		"MANIFESTGROUP_Dir": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "Group", "__MANIFESTGROUP__", "__MANIFESTGROUP__" ]
+		},
+		"MANIFESTGROUP_File": {
+			"Type": "Path",
+			"Val": [ "@P $ MANIFESTGROUP_Dir", "Packet.rsgp" ]
+		},
+		"RawOriResInfoFile": {
+			"Type": "Path",
+			"Val": [ "@P $ MANIFESTGROUP_Dir", "Res", "properties", "resources.rton" ]
+		},
+		"OriResInfoFile": {
+			"Type": "Path",
+			"Val": "@ $ RawOriResInfoFile #. Path_SetPrefix ~"
+		}
+	},
+	"Task": [ {
+			"EnAble": true,
+			"Type": "List",
+			"Task": [ {
+					"EnAble": "@ $ ReGenMANIFESTGROUP",
+					"Type": "Call",
+					"Func": [ "InfoUtil", "Cat" ],
+					"Parm": {
+						"InfoType": "ResPkgInfo",
+						"InfoFile": "@ $ PkgResInfoFile",
+						"MainDir": "@ $ PkgResInfoDir"
+					}
+				}, {
+					"EnAble": "@ $ ReGenMANIFESTGROUP",
+					"Type": "Call",
+					"Func": [ "InfoUtil", "Lite" ],
+					"Parm": {
+						"InfoType": "ResPkgInfo",
+						"SrcFile": "@ $ PkgResInfoFile",
+						"DstFile": "@ $ PkgResInfoFile_Lite",
+						"ResID": "@ $ ResIDList"
+					}
+				}, {
+					"EnAble": "@ $ ReGenMANIFESTGROUP",
+					"Type": "Call",
+					"Func": [ "InfoUtil", "Cnv" ],
+					"Parm": {
+						"SrcInfoType": "ResPkgInfo",
+						"DstInfoType": "ResPkgInfo_Ori",
+						"SrcInfoFile": "@ $ PkgResInfoFile_Lite",
+						"DstInfoFile": "@ $ OriResInfoFile",
+						"AppendInfoFile": []
+					}
+				}, {
+					"EnAble": "@ $ ReGenMANIFESTGROUP",
+					"Type": "Call",
+					"Func": [ "RTONUtil", "Encoder", "EnCode" ],
+					"Parm": {
+						"JSONFile": "@ $ OriResInfoFile",
+						"RTONFile": "@ $ RawOriResInfoFile",
+						"UseCacheStr": true,
+						"UseSpecialTypeForRTID": false,
+						"GetAllStrToTop": true,
+						"MemorySize": "@ ! ByteSize_Str 64M"
+					}
+				}, {
+					"EnAble": "@ $ ReGenMANIFESTGROUP",
+					"Type": "Call",
+					"Func": [ "ResPkgUtil", "RSGPUtil", "Packer", "Pack" ],
+					"Parm": {
+						"PkgFile": "@ $ MANIFESTGROUP_File",
+						"MainDir": "@ $ MANIFESTGROUP_Dir",
+						"CipherTextUpperCase": true,
+						"MemorySize": "@ ! ByteSize_Str 64M"
+					}
+				}, {
+					"EnAble": true,
+					"Type": "Call",
+					"Func": [ "InfoUtil", "Cat" ],
+					"Parm": {
+						"InfoType": "RSBStructInfo",
+						"InfoFile": "@ $ PkgStructInfoFile",
+						"MainDir": "@ $ PkgStructInfoDir"
+					}
+				}, {
+					"EnAble": true,
+					"Type": "Call",
+					"Func": [ "InfoUtil", "Lite" ],
+					"Parm": {
+						"InfoType": "RSBStructInfo",
+						"SrcFile": "@ $ PkgStructInfoFile",
+						"DstFile": "@ $ PkgStructInfoFile_Lite",
+						"ResID": "@ $ ResIDList"
+					}
+				}, {
+					"EnAble": true,
+					"Type": "Call",
+					"Func": [ "ResPkgUtil", "RSBUtil", "Packer", "Pack" ],
+					"Parm": {
+						"PkgFile": "@ $ File",
+						"MainDir": "@ $ Dir",
+						"PackFromGroup": true,
+						"PackRSGPByMainInfo": false,
+						"OutPutNewPacket": false,
+						"UseReadyPacket": true,
+						"CipherTextUpperCase": true,
+						"MemorySize": "@ ! ByteSize_Str 1G"
+					}
+				} ]
+		} ]
+}

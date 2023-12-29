@@ -1,0 +1,18 @@
+{
+	"Type": "List",
+	"Var": {
+		"Dir": {
+			"Type": "Path",
+			"Val": "@ ? Path_Dir"
+		}
+	},
+	"Task": [  {
+			"EnAble": true,
+			"Type": "Call",
+			"Func": [ "NonStdFunc", "ReNameFileCase" ],
+			"Parm": {
+				"OriListDataFile": [ "@P $ Dir", "ResInfo.json" ],
+				"TargetDir": [ "@P $ Dir", "Res" ]
+			}
+		} ]
+}

@@ -1,0 +1,49 @@
+{
+	"Type": "List",
+	"Var": {
+		"ResInfo_Res": {
+			"Cmt": "Convert Res File (0: Res to ResInfo, 1: ResInfo to Res)",
+			"Type": "Bool",
+			"Val": "@ ? Bool"
+		},
+		"File": {
+			"Type": "Path",
+			"Val": "@ ? Path_File"
+		},
+		"Out": {
+			"Type": "Path",
+			"Val": "@ $ File #. Path_SetPrefix ~"
+		}
+	},
+	"Task": [ {
+			"EnAble": "@ $ ResInfo_Res",
+			"Cmt": "ResInfo to Res Cnv",
+			"Type": "List",
+			"Task": [ {
+					"Type": "Call",
+					"Func": [ "InfoUtil", "Cnv" ],
+					"Parm": {
+						"SrcInfoType": "ResPkgInfo",
+						"DstInfoType": "ResPkgInfo_Ori",
+						"SrcInfoFile": "@ $ File",
+						"DstInfoFile": "@ $ Out",
+						"AppendInfoFile": [ "NULL" ]
+					}
+				} ]
+		}, {
+			"EnAble": "@ $ ResInfo_Res # Bool_Inverse",
+			"Cmt": "Res to ResInfo Cnv",
+			"Type": "List",
+			"Task": [ {
+					"Type": "Call",
+					"Func": [ "InfoUtil", "Cnv" ],
+					"Parm": {
+						"SrcInfoType": "ResPkgInfo_Ori",
+						"DstInfoType": "ResPkgInfo",
+						"SrcInfoFile": "@ $ File",
+						"DstInfoFile": "@ $ Out",
+						"AppendInfoFile": [ ]
+					}
+				} ]
+		} ]
+}

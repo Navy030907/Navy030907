@@ -1,0 +1,384 @@
+{
+	"Cmt": "RSB 资源提取",
+	"Type": "List",
+	"Var": {
+		"UseReNameCase": {
+			"Cmt": "是否在解包后重命名Res文件夹下资源文件，以区别大小写？这会花费更长时间。（直接解包得到的资源文件名均为大写）",
+			"Type": "Bool",
+			"Val": "@ ? Bool"
+		},
+		"ExtConfig": {
+			"Cmt": "是否解码\"\\packages\"文件夹内所有rton？",
+			"Type": "Bool",
+			"Val": "@ ? Bool"
+		},
+		"IsCryptRTON": {
+			"Cmt": "RTON是否被加密？",
+			"Type": "Bool",
+			"Val": "@ ? Bool"
+		},
+		"ExtAtlas": {
+			"Cmt": "是否提取Atlas？（解码PTX）",
+			"Type": "Bool",
+			"Val": "@ ? Bool"
+		},
+		"ExtImage": {
+			"Cmt": "是否提取Image？（即分割Atlas，需ExtAtlas=true）",
+			"Type": "Bool",
+			"Val": "@ ? Bool"
+		},
+		"ExtAnim": {
+			"Cmt": "是否提取Anim？（解码PAM）",
+			"Type": "Bool",
+			"Val": "@ ? Bool"
+		},
+		"ExtAnimRipeJSON": {
+			"Cmt": "是否提取AnimRipeJSON？（转化动画JSON数据，可通过Anim-Viewer查看）",
+			"Type": "Bool",
+			"Val": "@ ? Bool"
+		},
+		"ExtAnimXFL": {
+			"Cmt": "是否提取AnimXFL？（转化动画XFL数据，可通过Adobe-Flash查看）",
+			"Type": "Bool",
+			"Val": "@ ? Bool"
+		},
+		"PushXFLLibrary": {
+			"Cmt": "是否复制图像到XFL库文件夹中",
+			"Type": "Bool",
+			"Val": "@ ? Bool"
+		},
+		"TexFmtIdxListFile": {
+			"Cmt": "选择纹理格式索引文件",
+			"Type": "Path",
+			"Val": "@ ? Path_File"
+		},
+		"File": {
+			"Cmt": "选择RSB文件",
+			"Type": "Path",
+			"Val": "@ ? Path_File"
+		},
+		"Dir": {
+			"Type": "Path",
+			"Val": "@ $ File #. Path_SetSuffix dir"
+		},
+		"OriResInfoFile": {
+			"Cmt": "OriResInfoFile : 这个变量设置了 resources.rton 的路径，默认为国际版main包中的路径，如有必要请修改",
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "Res", "properties", "resourcesconfig.rton" ]
+		},
+		"AtlasDir": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "Atlas" ]
+		},
+		"ImageDir": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "Image" ]
+		}
+	},
+	"Task": [ {
+			"EnAble": true,
+			"Cmt": "解包RSB，提取所有资源文件至Res文件夹",
+			"Type": "Call",
+			"Func": [ "ResPkgUtil", "RSBUtil", "Packer", "UnPack" ],
+			"Parm": {
+				"PkgFile": "@ $ File",
+				"MainDir": "@ $ Dir",
+				"OutPut_Res": true,
+				"OutPut_Packet": false,
+				"OutPut_PacketInfo": false,
+				"OutPut_Group": false,
+				"OutPut_Group_Res": false,
+				"OutPut_Group_Packet": false
+			}
+		}, {
+			"Cmt": "解码resources.rton",
+			"Type": "Call",
+			"Func": [ "RTONUtil", "Encoder", "DeCode" ],
+			"Parm": {
+				"RTONFile": "@ $ OriResInfoFile",
+				"JSONFile": "@ $ OriResInfoFile #. Path_SetPrefix ~",
+				"RTONDataOfs": 0
+			}
+		}, {
+			"Cmt": "转化resources.json",
+			"Type": "Call",
+			"Func": [ "InfoUtil", "Cnv" ],
+			"Parm": {
+				"SrcInfoType": "ResPkgInfo_Ori",
+				"DstInfoType": "ResPkgInfo",
+				"SrcInfoFile": "@ $ OriResInfoFile #. Path_SetPrefix ~",
+				"DstInfoFile": [ "@P $ Dir", "ResPkgInfo.json" ],
+				"AppendInfoFile": []
+			}
+		}, {
+			"Cmt": "生成AtlasList",
+			"Type": "Call",
+			"Func": [ "InfoUtil", "Cnv" ],
+			"Parm": {
+				"SrcInfoType": "RSBStructInfo",
+				"DstInfoType": "AtlasInfoList",
+				"SrcInfoFile": [ "@P $ Dir", "StructInfo.json" ],
+				"DstInfoFile": [ "@P $ Dir", "AtlasList.json" ],
+				"AppendInfoFile": "@ $ TexFmtIdxListFile"
+			}
+		}, {
+			"Cmt": "生成ImageList",
+			"Type": "Call",
+			"Func": [ "InfoUtil", "Cnv" ],
+			"Parm": {
+				"SrcInfoType": "ResPkgInfo",
+				"DstInfoType": "AtlasInfoList",
+				"SrcInfoFile": [ "@P $ Dir", "ResPkgInfo.json" ],
+				"DstInfoFile": [ "@P $ Dir", "ImageList.json" ],
+				"AppendInfoFile": "@ $ TexFmtIdxListFile"
+			}
+		}, {
+			"EnAble": "@ $ UseReNameCase",
+			"Cmt": "重命名Res文件夹内资源文件",
+			"Type": "Call",
+			"Func": [ "NonStdFunc", "ReNameFileCase" ],
+			"Parm": {
+				"OriListDataFile": [ "@P $ Dir", "ResPkgInfo.json" ],
+				"TargetDir": [ "@P $ Dir", "Res" ]
+			}
+		}, {
+			"EnAble": "@ $ ExtConfig",
+			"Cmt": "解码\"\\packages\"文件夹内所有rton",
+			"Type": "List",
+			"Var": {
+				"RTONDir": {
+					"Type": "Path",
+					"Val": [ "@P $ Dir", "Res", "packages" ]
+				},
+				"JSONDir": {
+					"Type": "Path",
+					"Val": [ "@P $ Dir", "Config", "packages" ]
+				},
+				"TmpDir": {
+					"Type": "Path",
+					"Val": [ "@P $ Dir", "ConfigTmp", "packages" ]
+				},
+				"RTONList": {
+					"Type": "[Path",
+					"Val": "@ ! PathList_File $ RTONDir #. PathList_FilterSuffix rton"
+				},
+				"Counter": {
+					"Type": "Int",
+					"Val": 0
+				}
+			},
+			"Task": [ {
+					"EnAble": "@ $ IsCryptRTON # Bool_Inverse",
+					"Type": "Call",
+					"Func": [ "DevUtil", "Cpy", "Dir" ],
+					"Parm": {
+						"SrcPath": "@ $ RTONDir",
+						"DstPath": "@ $ TmpDir"
+					}
+				}, {
+					"EnAble": "@ $ IsCryptRTON",
+					"Type": "Call",
+					"Loop": [ "@ $ Counter", "@ $] RTONList" ],
+					"ReVarIntro": {
+						"Counter": 0
+					},
+					"Var": {
+						"NewCounter": {
+							"Type": "Int",
+							"Val": "@ $ Counter #. Int_Add 1"
+						}
+					},
+					"ReVarAfter": {
+						"Counter": "@ $ NewCounter"
+					},
+					"Func": [ "RTONUtil", "Encryptor", "DeCrypt" ],
+					"Parm": {
+						"CipherFile": "@ $ RTONDir #* Path_CatLevel $[* RTONList $ Counter",
+						"PlainFile": "@ $ TmpDir #* Path_CatLevel $[* RTONList $ Counter",
+						"DataBlockSum": 6,
+						"BufBlockSum": 8,
+						"Key": ""
+					}
+				}, {
+					"Type": "Call",
+					"Loop": [ "@ $ Counter", "@ $] RTONList" ],
+					"ReVarIntro": {
+						"Counter": 0
+					},
+					"Var": {
+						"NewCounter": {
+							"Type": "Int",
+							"Val": "@ $ Counter #. Int_Add 1"
+						}
+					},
+					"ReVarAfter": {
+						"Counter": "@ $ NewCounter"
+					},
+					"Func": [ "RTONUtil", "Encoder", "DeCode" ],
+					"Parm": {
+						"RTONFile": "@ $ TmpDir #* Path_CatLevel $[* RTONList $ Counter",
+						"JSONFile": "@ $ JSONDir #* Path_CatLevel $[* RTONList $ Counter # Path_EraseSuffix #. Path_SetSuffix json",
+						"RTONDataOfs": 0
+					}
+				}, {
+					"Type": "Call",
+					"Func": [ "DevUtil", "ReMov", "Dir" ],
+					"Parm": {
+						"Path": "@ $ TmpDir"
+					}
+				} ]
+		}, {
+			"EnAble": "@ $ ExtAtlas",
+			"Cmt": "解码PopTex，生成Atlas",
+			"Type": "Call",
+			"Func": [ "ImageUtil", "PopTexEncoder", "DeCodeAtlasList" ],
+			"Parm": {
+				"AtlasInfoListFile": [ "@P $ Dir", "AtlasList.json" ],
+				"SrcDir": [ "@P $ Dir", "Res" ],
+				"DstDir": "@ $ AtlasDir"
+			}
+		}, {
+			"EnAble": false,
+			"Cmt": "重命名Atlas文件夹内资源文件",
+			"Type": "Call",
+			"Func": [ "NonStdFunc", "ReNameFileCase" ],
+			"Parm": {
+				"OriListDataFile": [ "@P $ Dir", "ResPkgInfo.json" ],
+				"TargetDir": "@ $ AtlasDir"
+			}
+		}, {
+			"EnAble": "@ $ ExtImage",
+			"Cmt": "分割Atlas，生成Image",
+			"Type": "Call",
+			"Func": [ "ImageUtil", "Spliter", "SplitByAtlasInfoList" ],
+			"Parm": {
+				"AtlasInfoListFile": [ "@P $ Dir", "ImageList.json" ],
+				"SrcDir": "@ $ AtlasDir",
+				"DstDir": "@ $ ImageDir",
+				"UseSingleDir": false
+			}
+		}, {
+			"Cmt": "提取Anim",
+			"Type": "List",
+			"Var": {
+				"PAMDir": {
+					"Type": "Path",
+					"Val": [ "@P $ Dir", "Res" ]
+				},
+				"ImgDir": {
+					"Type": "Path",
+					"Val": [ "@P $ Dir", "Image" ]
+				},
+				"JSONDir": {
+					"Type": "Path",
+					"Val": [ "@P $ Dir", "Anim_RipeJSON" ]
+				},
+				"XFLDir": {
+					"Type": "Path",
+					"Val": [ "@P $ Dir", "Anim_XFL" ]
+				},
+				"DecDir": {
+					"Type": "Path",
+					"Val": [ "@P $ Dir", "Anim_Dec" ]
+				},
+				"PAMList": {
+					"Type": "[Path",
+					"Val": "@ ! PathList_File $ PAMDir #. PathList_FilterSuffix pam"
+				},
+				"Counter": {
+					"Type": "Int",
+					"Val": 0
+				}
+			},
+			"Task": [ {
+					"Cmt": "PAM DeCode",
+					"EnAble": "@ $ ExtAnim",
+					"Type": "Call",
+					"Loop": [ "@ $ Counter", "@ $] PAMList" ],
+					"ReVarIntro": {
+						"Counter": 0
+					},
+					"Var": {
+						"NewCounter": {
+							"Type": "Int",
+							"Val": "@ $ Counter #. Int_Add 1"
+						}
+					},
+					"ReVarAfter": {
+						"Counter": "@ $ NewCounter"
+					},
+					"Func": [ "AnimUtil", "PopAnimUtil", "Encoder", "DeCode" ],
+					"Parm": {
+						"PopAnimFile": "@ $ PAMDir #* Path_CatLevel $[* PAMList $ Counter",
+						"JSONFile": "@ $ DecDir #* Path_CatLevel $[* PAMList $ Counter # Path_EraseSuffix #. Path_SetSuffix json"
+					}
+				}, {
+					"Cmt": "Gen RipeJSON",
+					"EnAble": "@ $ ExtAnimRipeJSON",
+					"Type": "Call",
+					"Loop": [ "@ $ Counter", "@ $] PAMList" ],
+					"ReVarIntro": {
+						"Counter": 0
+					},
+					"Var": {
+						"NewCounter": {
+							"Type": "Int",
+							"Val": "@ $ Counter #. Int_Add 1"
+						}
+					},
+					"ReVarAfter": {
+						"Counter": "@ $ NewCounter"
+					},
+					"Func": [ "AnimUtil", "PopAnimUtil", "Converter", "CnvToRipe" ],
+					"Parm": {
+						"JSONFile": "@ $ DecDir #* Path_CatLevel $[* PAMList $ Counter # Path_EraseSuffix #. Path_SetSuffix json",
+						"RipeJSONFile": "@ $ JSONDir #* Path_CatLevel $[* PAMList $ Counter # Path_EraseSuffix #. Path_SetSuffix ripe.json"
+					}
+				}, {
+					"Cmt": "Gen XFL",
+					"EnAble": "@ $ ExtAnimXFL",
+					"Type": "Call",
+					"Loop": [ "@ $ Counter", "@ $] PAMList" ],
+					"ReVarIntro": {
+						"Counter": 0
+					},
+					"Var": {
+						"NewCounter": {
+							"Type": "Int",
+							"Val": "@ $ Counter #. Int_Add 1"
+						}
+					},
+					"ReVarAfter": {
+						"Counter": "@ $ NewCounter"
+					},
+					"Func": [ "AnimUtil", "PopAnimUtil", "Converter", "CnvToXFL" ],
+					"Parm": {
+						"JSONFile": "@ $ DecDir #* Path_CatLevel $[* PAMList $ Counter # Path_EraseSuffix #. Path_SetSuffix json",
+						"XFLDir": "@ $ XFLDir #* Path_CatLevel $[* PAMList $ Counter # Path_EraseSuffix #. Path_SetSuffix xfl",
+						"ResID": 1536
+					}
+				}, {
+					"Cmt": "Push Image To XFL-Library",
+					"EnAble": "@ $ PushXFLLibrary",
+					"Type": "Call",
+					"Loop": [ "@ $ Counter", "@ $] PAMList" ],
+					"ReVarIntro": {
+						"Counter": 0
+					},
+					"Var": {
+						"NewCounter": {
+							"Type": "Int",
+							"Val": "@ $ Counter #. Int_Add 1"
+						}
+					},
+					"ReVarAfter": {
+						"Counter": "@ $ NewCounter"
+					},
+					"Func": [ "DevUtil", "Cpy", "Dir" ],
+					"Parm": {
+						"SrcPath": "@ $ ImgDir #* Path_CatLevel $[* PAMList $ Counter # Path_EraseLastLevel",
+						"DstPath": "@ $ XFLDir #* Path_CatLevel $[* PAMList $ Counter # Path_EraseSuffix # Path_EraseSuffix #. Path_SetSuffix xfl #. Path_AddLevel LIBRARY"
+					}
+				} ]
+		} ]
+}

@@ -1,0 +1,124 @@
+{
+	"Cmt": "RSB Build Simple",
+	"Type": "List",
+	"Var": {
+		"Dir": {
+			"Type": "Path",
+			"Val": "@ ? Path_Dir"
+		},
+		"File": {
+			"Type": "Path",
+			"Val": "@ $ Dir # Path_EraseSuffix"
+		},
+		"ReGenMANIFESTGROUP": {
+			"Cmt": "Generate resources.json?",
+			"Type": "Bool",
+			"Val": "@ ? Bool"
+		},
+		"PkgResInfoFile": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "ResInfo.json" ]
+		},
+		"PkgStructInfoFile": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "StructInfo.json" ]
+		},
+		"RawOriResInfoFile": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "Res", "properties", "resources.rton" ]
+		},
+		"OriResInfoFile": {
+			"Type": "Path",
+			"Val": "@ $ RawOriResInfoFile #. Path_SetPrefix ~"
+		},
+		"MANIFEST_PacketFile": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "Packet", "__MANIFESTGROUP__.rsgp" ]
+		}
+	},
+	"Task": [ {
+			"EnAble": "@ $ ReGenMANIFESTGROUP",
+			"Type": "Call",
+			"Func": [ "InfoUtil", "Cnv" ],
+			"Parm": {
+				"SrcInfoType": "ResPkgInfo",
+				"DstInfoType": "ResPkgInfo_Ori",
+				"SrcInfoFile": "@ $ PkgResInfoFile",
+				"DstInfoFile": "@ $ OriResInfoFile",
+				"AppendInfoFile": []
+			}
+		}, {
+			"EnAble": "@ $ ReGenMANIFESTGROUP",
+			"Type": "Call",
+			"Func": [ "RTONUtil", "Encoder", "EnCode" ],
+			"Parm": {
+				"JSONFile": "@ $ OriResInfoFile",
+				"RTONFile": "@ $ RawOriResInfoFile",
+				"UseCacheStr": false,
+				"UseSpecialTypeForRTID": false,
+				"GetAllStrToTop": false,
+				"MemorySize": "@ ! ByteSize_Str 64M"
+			}
+		}, {
+			"EnAble": "@ $ ReGenMANIFESTGROUP",
+			"Type": "Call",
+			"Func": [ "DevUtil", "ReMov", "File" ],
+			"Parm": {
+				"Path": "@ $ MANIFEST_PacketFile"
+			}
+		}, {
+			"Type": "List",
+			"Var": {
+				"RTONDir": {
+					"Type": "Path",
+					"Val": [ "@P $ Dir", "Res", "packages" ]
+				},
+				"JSONList": {
+					"Type": "[Path",
+					"Val": "@ ! PathList_File $ RTONDir #. PathList_FilterSuffix json"
+				},
+				"Counter": {
+					"Type": "Int",
+					"Val": 0
+				}
+			},
+			"Task": [ {
+					"Type": "Call",
+					"Loop": [ "@ $ Counter", "@ $] JSONList" ],
+					"ReVarIntro": {
+						"Counter": 0
+					},
+					"Var": {
+						"NewCounter": {
+							"Type": "Int",
+							"Val": "@ $ Counter #. Int_Add 1"
+						}
+					},
+					"ReVarAfter": {
+						"Counter": "@ $ NewCounter"
+					},
+					"Func": [ "RTONUtil", "Encoder", "EnCode" ],
+					"Parm": {
+						"JSONFile": "@ $ RTONDir #* Path_CatLevel $[* JSONList $ Counter",
+						"RTONFile": "@ $ RTONDir #* Path_CatLevel $[* JSONList $ Counter # Path_EraseSuffix #. Path_SetSuffix rton",
+						"UseCacheStr": true,
+						"UseSpecialTypeForRTID": true,
+						"GetAllStrToTop": false,
+						"MemorySize": "@ ! ByteSize_Str 64M"
+					}
+				} ]
+		}, {
+			"Type": "Call",
+			"Func": [ "ResPkgUtil", "RSBUtil", "Packer", "Pack" ],
+			"Parm": {
+				"PkgFile": "@ $ File",
+				"MainDir": "@ $ Dir",
+				"PackFromGroup": false,
+				"PackRSGPByMainInfo": true,
+				"OutPutNewPacket": false,
+				"UseReadyPacket": true,
+				"CipherTextUpperCase": true,
+				"MemorySize": "@ ! ByteSize_Str 1G"
+			}
+		} ]
+}

@@ -1,0 +1,22 @@
+{
+	"Type": "List",
+	"Var": {
+		"Dir": {
+			"Type": "Path",
+			"Val": "@ ? Path_Dir"
+		},
+		"File": {
+			"Type": "Path",
+			"Val": "@ ? Path_File #. Path_SetSuffix json"
+		}
+	},
+	"Task": [ {
+		"Type": "Call",
+		"Func": [ "InfoUtil", "Cat" ],
+		"Parm": {
+			"InfoType": "ResPkgInfo",
+			"InfoFile": "@ $ File",
+			"MainDir": "@ $ Dir"
+		}
+	} ]
+}

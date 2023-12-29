@@ -1,0 +1,29 @@
+{
+	"Cmt": "此脚本用于打包一个RSGP文件，运行时默认使用 256M 内存，可在文件中修改占用大小，但不得低于包体最终大小",
+	"Type": "Call",
+	"Func": [ "ResPkgUtil", "RSGPUtil", "Packer", "Pack_Literal" ],
+	"Var": {
+		"PkgFile": {
+			"Cmt": "选择目标RSGP，打包结果将覆盖该文件内容",
+			"Type": "Path",
+			"Val": "@ ? Path_File"
+		},
+		"StructInfoFile": {
+			"Cmt": "选择构造RSGP的结构信息文件",
+			"Type": "Path",
+			"Val": "@ ? Path_File"
+		},
+		"ResDir": {
+			"Cmt": "选择资源文件主目录",
+			"Type": "Path",
+			"Val": "@ ? Path_Dir"
+		}
+	},
+	"Parm": {
+		"PkgFile": "@ $ PkgFile",
+		"StructInfoFile": "@ $ StructInfoFile",
+		"ResDir": "@ $ ResDir",
+		"CipherTextUpperCase": true,
+		"MemorySize": "@ ! ByteSize_Str 256M"
+	}
+}

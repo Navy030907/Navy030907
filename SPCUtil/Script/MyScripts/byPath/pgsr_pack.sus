@@ -1,0 +1,24 @@
+{
+	"Type": "List",
+	"Var": {
+		"Dir": {
+			"Cmt": "Select StructInfo.json from the unpacket pgsr."
+			"Type": "Path",
+			"Val": "@ ? Path_Dir"
+		},
+		"File": {
+			"Type": "Path",
+			"Val": "@ $ Dir # Path_EraseSuffix"
+		}
+	},
+	"Task": [ {
+		"Type": "Call",
+		"Func": [ "ResPkgUtil", "RSGPUtil", "Packer", "Pack" ],
+		"Parm": {
+			"PkgFile": "@ $ File",
+			"MainDir": "@ $ Dir",
+			"CipherTextUpperCase": true,
+			"MemorySize": "@ ! ByteSize_Str 2048M"
+		}
+	} ]
+}

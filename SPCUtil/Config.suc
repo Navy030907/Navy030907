@@ -1,0 +1,2412 @@
+{
+	"LogConfig": {
+		"ScriptListProg": false,
+		"ScriptLoopProg": false,
+		"ScriptTimer": false,
+		"FuncTimer": true,
+		"FuncName": true,
+		"VarName": false
+	},
+	"Func": [ {
+			"Func": [ "Pause" ],
+			"Parm": {}
+		}, {
+			"Func": [ "Delay" ],
+			"Parm": {
+				"Second": "Int"
+			}
+		}, {
+			"Func": [ "Setting", "JSONIOBuf", "ModSize" ],
+			"Parm": {
+				"Size": "Int"
+			}
+		}, {
+			"Func": [ "Setting", "JSONStyle", "SetStyle" ],
+			"Parm": {
+				"OutNewLineIfElement": "Bool"
+			}
+		}, {
+			"Func": [ "DevUtil", "Cpy", "File" ],
+			"Parm": {
+				"SrcPath": "Path",
+				"DstPath": "Path"
+			}
+		}, {
+			"Func": [ "DevUtil", "Cpy", "Dir" ],
+			"Parm": {
+				"SrcPath": "Path",
+				"DstPath": "Path"
+			}
+		}, {
+			"Func": [ "DevUtil", "ReName", "File" ],
+			"Parm": {
+				"SrcPath": "Path",
+				"DstPath": "Path"
+			}
+		}, {
+			"Func": [ "DevUtil", "ReName", "Dir" ],
+			"Parm": {
+				"SrcPath": "Path",
+				"DstPath": "Path"
+			}
+		}, {
+			"Func": [ "DevUtil", "ReMov", "File" ],
+			"Parm": {
+				"Path": "Path"
+			}
+		}, {
+			"Func": [ "DevUtil", "ReMov", "Dir" ],
+			"Parm": {
+				"Path": "Path"
+			}
+		}, {
+			"Func": [ "DataUtil", "Compressor", "ZLIB", "Compress" ],
+			"Parm": {
+				"RawFile": "Path",
+				"RipeFile": "Path",
+				"Ofs": "Int",
+				"Lv": "Int"
+			}
+		}, {
+			"Func": [ "DataUtil", "Compressor", "ZLIB", "UnCompress" ],
+			"Parm": {
+				"RipeFile": "Path",
+				"RawFile": "Path",
+				"Ofs": "Int",
+				"BufRate": "Int"
+			}
+		}, {
+			"Func": [ "DataUtil", "Encryptor", "XOR", "Crypt" ],
+			"Cmt": "Key is 'Byte'",
+			"Parm": {
+				"SrcFile": "Path",
+				"DstFile": "Path",
+				"Key": "Int"
+			}
+		}, {
+			"Func": [ "DataUtil", "Encryptor", "XOR", "CryptByStrKey" ],
+			"Parm": {
+				"SrcFile": "Path",
+				"DstFile": "Path",
+				"Key": "Str"
+			}
+		}, {
+			"Func": [ "DataUtil", "Encryptor", "Base64", "EnCrypt" ],
+			"Parm": {
+				"PlainFile": "Path",
+				"CipherFile": "Path"
+			}
+		}, {
+			"Func": [ "DataUtil", "Encryptor", "Base64", "DeCrypt" ],
+			"Parm": {
+				"CipherFile": "Path",
+				"PlainFile": "Path"
+			}
+		}, {
+			"Func": [ "DataUtil", "Encryptor", "PvZ2_CHS_IRE", "EnCrypt" ],
+			"Parm": {
+				"PlainFile": "Path",
+				"CipherFile": "Path",
+				"DataBlockSum": "Int",
+				"BufBlockSum": "Int",
+				"Key": "Str",
+				"IV": "Str"
+			}
+		}, {
+			"Func": [ "DataUtil", "Encryptor", "PvZ2_CHS_IRE", "DeCrypt" ],
+			"Parm": {
+				"CipherFile": "Path",
+				"PlainFile": "Path",
+				"DataBlockSum": "Int",
+				"BufBlockSum": "Int",
+				"Key": "Str",
+				"IV": "Str"
+			}
+		}, {
+			"Func": [ "DataUtil", "Hash", "MD5", "Make" ],
+			"Parm": {
+				"Data": "Str"
+			}
+		}, {
+			"Func": [ "JSONUtil", "FmtFile" ],
+			"Parm": {
+				"SrcFile": "Path",
+				"DstFile": "Path"
+			}
+		}, {
+			"Func": [ "InfoUtil", "Cnv" ],
+			"Parm": {
+				"SrcInfoType": "Str",
+				"DstInfoType": "Str",
+				"SrcInfoFile": "Path",
+				"DstInfoFile": "Path",
+				"AppendInfoFile": "Path"
+			}
+		}, {
+			"Func": [ "InfoUtil", "Cpy" ],
+			"Parm": {
+				"InfoType": "Str",
+				"SrcInfoFile": "Path",
+				"DstInfoFile": "Path"
+			}
+		}, {
+			"Func": [ "InfoUtil", "Split" ],
+			"Parm": {
+				"InfoType": "Str",
+				"InfoFile": "Path",
+				"MainDir": "Path"
+			}
+		}, {
+			"Func": [ "InfoUtil", "Cat" ],
+			"Parm": {
+				"InfoType": "Str",
+				"InfoFile": "Path",
+				"MainDir": "Path"
+			}
+		}, {
+			"Func": [ "InfoUtil", "Lite" ],
+			"Cmt": "Res_Null=0",
+			"Parm": {
+				"InfoType": "Str",
+				"SrcFile": "Path",
+				"DstFile": "Path",
+				"ResID": "[Int"
+			}
+		}, {
+			"Func": [ "RTONUtil", "Encoder", "EnCode" ],
+			"Parm": {
+				"JSONFile": "Path",
+				"RTONFile": "Path",
+				"UseCacheStr": "Bool",
+				"UseSpecialTypeForRTID": "Bool",
+				"MemorySize": "Int"
+			}
+		}, {
+			"Func": [ "RTONUtil", "Encoder", "DeCode" ],
+			"Parm": {
+				"RTONFile": "Path",
+				"JSONFile": "Path",
+				"RTONDataOfs": "Int"
+			}
+		}, {
+			"Func": [ "RTONUtil", "Encryptor", "EnCrypt" ],
+			"Parm": {
+				"PlainFile": "Path",
+				"CipherFile": "Path",
+				"Key": "Str"
+			}
+		}, {
+			"Func": [ "RTONUtil", "Encryptor", "DeCrypt" ],
+			"Parm": {
+				"CipherFile": "Path",
+				"PlainFile": "Path",
+				"Key": "Str"
+			}
+		}, {
+			"Func": [ "ResPkgUtil", "RSGPUtil", "Packer", "Pack_Literal" ],
+			"Parm": {
+				"PkgFile": "Path",
+				"StructInfoFile": "Path",
+				"ResDir": "Path",
+				"CipherTextUpperCase": "Bool",
+				"MemorySize": "Int"
+			}
+		}, {
+			"Func": [ "ResPkgUtil", "RSGPUtil", "Packer", "Pack" ],
+			"Parm": {
+				"PkgFile": "Path",
+				"MainDir": "Path",
+				"CipherTextUpperCase": "Bool",
+				"MemorySize": "Int"
+			}
+		}, {
+			"Func": [ "ResPkgUtil", "RSGPUtil", "Packer", "UnPack" ],
+			"Parm": {
+				"PkgFile": "Path",
+				"MainDir": "Path"
+			}
+		}, {
+			"Func": [ "ResPkgUtil", "RSBUtil", "Packer", "Pack" ],
+			"Parm": {
+				"PkgFile": "Path",
+				"MainDir": "Path",
+				"PackFromGroup": "Bool",
+				"PackRSGPByMainInfo": "Bool",
+				"OutPutNewPacket": "Bool",
+				"UseReadyPacket": "Bool",
+				"CipherTextUpperCase": "Bool",
+				"MemorySize": "Int"
+			}
+		}, {
+			"Func": [ "ResPkgUtil", "RSBUtil", "Packer", "UnPack" ],
+			"Parm": {
+				"PkgFile": "Path",
+				"MainDir": "Path",
+				"OutPut_Res": "Bool",
+				"OutPut_Packet": "Bool",
+				"OutPut_PacketInfo": "Bool",
+				"OutPut_Group": "Bool",
+				"OutPut_Group_Res": "Bool",
+				"OutPut_Group_Packet": "Bool"
+			}
+		}, {
+			"Func": [ "ResPkgUtil", "RSBUtil", "Packer", "PackToPart" ],
+			"Parm": {
+				"PartDir": "Path",
+				"MainDir": "Path",
+				"PackFromGroup": "Bool",
+				"PackRSGPByMainInfo": "Bool",
+				"OutPutNewPacket": "Bool",
+				"UseReadyPacket": "Bool",
+				"CipherTextUpperCase": "Bool",
+				"MemorySize": "Int"
+			}
+		}, {
+			"Func": [ "ResPkgUtil", "RSBUtil", "Packer", "UnPackFromPart" ],
+			"Parm": {
+				"PartDir": "Path",
+				"MainDir": "Path",
+				"OutPut_Res": "Bool",
+				"OutPut_Packet": "Bool",
+				"OutPut_PacketInfo": "Bool",
+				"OutPut_Group": "Bool",
+				"OutPut_Group_Res": "Bool",
+				"OutPut_Group_Packet": "Bool"
+			}
+		}, {
+			"Func": [ "ResPkgUtil", "DZUtil", "Packer", "Pack" ],
+			"Parm": {
+				"PkgFile": "Path",
+				"MainDir": "Path",
+				"MemorySize": "Int"
+			}
+		}, {
+			"Func": [ "ResPkgUtil", "DZUtil", "Packer", "UnPack" ],
+			"Parm": {
+				"PkgFile": "Path",
+				"MainDir": "Path"
+			}
+		}, {
+			"Func": [ "ResPkgUtil", "PAKUtil", "Packer", "Pack" ],
+			"Parm": {
+				"PkgFile": "Path",
+				"MainDir": "Path",
+				"MemorySize": "Int"
+			}
+		}, {
+			"Func": [ "ResPkgUtil", "PAKUtil", "Packer", "UnPack" ],
+			"Parm": {
+				"PkgFile": "Path",
+				"MainDir": "Path"
+			}
+		}, {
+			"Func": [ "ImageUtil", "Spliter", "Cat" ],
+			"Parm": {
+				"AtlasSize": "[Int",
+				"ImageInfoListFile": "Path",
+				"SrcDir": "Path",
+				"DstFile": "Path"
+			}
+		}, {
+			"Func": [ "ImageUtil", "Spliter", "CatByAtlasInfo" ],
+			"Parm": {
+				"AtlasInfoFile": "Path",
+				"SrcDir": "Path",
+				"DstDir": "Path",
+				"UseSingleDir": "Bool"
+			}
+		}, {
+			"Func": [ "ImageUtil", "Spliter", "CatByAtlasInfoList" ],
+			"Parm": {
+				"AtlasInfoListFile": "Path",
+				"SrcDir": "Path",
+				"DstDir": "Path",
+				"UseSingleDir": "Bool"
+			}
+		}, {
+			"Func": [ "ImageUtil", "Spliter", "Split" ],
+			"Parm": {
+				"ImageInfoListFile": "Path",
+				"SrcFile": "Path",
+				"DstDir": "Path"
+			}
+		}, {
+			"Func": [ "ImageUtil", "Spliter", "SplitByAtlasInfo" ],
+			"Parm": {
+				"AtlasInfoFile": "Path",
+				"SrcDir": "Path",
+				"DstDir": "Path",
+				"UseSingleDir": "Bool"
+			}
+		}, {
+			"Func": [ "ImageUtil", "Spliter", "SplitByAtlasInfoList" ],
+			"Parm": {
+				"AtlasInfoListFile": "Path",
+				"SrcDir": "Path",
+				"DstDir": "Path",
+				"UseSingleDir": "Bool"
+			}
+		}, {
+			"Func": [ "ImageUtil", "PopTexEncoder", "EnCode" ],
+			"Parm": {
+				"SrcFile": "Path",
+				"DstFile": "Path",
+				"Size": "[Int",
+				"TexFmt": "Str"
+			}
+		}, {
+			"Func": [ "ImageUtil", "PopTexEncoder", "DeCode" ],
+			"Parm": {
+				"SrcFile": "Path",
+				"DstFile": "Path",
+				"Size": "[Int",
+				"TexFmt": "Str"
+			}
+		}, {
+			"Func": [ "ImageUtil", "PopTexEncoder", "EnCodeAtlasList" ],
+			"Parm": {
+				"AtlasInfoListFile": "Path",
+				"SrcDir": "Path",
+				"DstDir": "Path"
+			}
+		}, {
+			"Func": [ "ImageUtil", "PopTexEncoder", "DeCodeAtlasList" ],
+			"Parm": {
+				"AtlasInfoListFile": "Path",
+				"SrcDir": "Path",
+				"DstDir": "Path"
+			}
+		}, {
+			"Func": [ "AudioUtil", "SoundBankUtil", "Packer", "Pack" ],
+			"Parm": {
+				"SoundBankFile": "Path",
+				"MainDir": "Path",
+				"MemorySize": "Int"
+			}
+		}, {
+			"Func": [ "AudioUtil", "SoundBankUtil", "Packer", "UnPack" ],
+			"Parm": {
+				"SoundBankFile": "Path",
+				"MainDir": "Path"
+			}
+		}, {
+			"Func": [ "AudioUtil", "SoundBankUtil", "NameMapperMod", "Load" ],
+			"Parm": {
+				"NameMapperFile": "Path"
+			}
+		}, {
+			"Func": [ "AudioUtil", "SoundBankUtil", "NameMapperMod", "Clear" ],
+			"Parm": {}
+		}, {
+			"Func": [ "AudioUtil", "SoundBankUtil", "CalcID32" ],
+			"Parm": {
+				"Name": "Str"
+			}
+		}, {
+			"Func": [ "AnimUtil", "PopAnimUtil", "Encoder", "EnCode" ],
+			"Parm": {
+				"JSONFile": "Path",
+				"PopAnimFile": "Path",
+				"MemorySize": "Int"
+			}
+		}, {
+			"Func": [ "AnimUtil", "PopAnimUtil", "Encoder", "DeCode" ],
+			"Parm": {
+				"PopAnimFile": "Path",
+				"JSONFile": "Path"
+			}
+		}, {
+			"Func": [ "AnimUtil", "PopAnimUtil", "Converter", "CnvToXFL" ],
+			"Parm": {
+				"JSONFile": "Path",
+				"XFLDir": "Path",
+				"ImageSize": "Int"
+			}
+		}, {
+			"Func": [ "AnimUtil", "PopAnimUtil", "Converter", "CnvFromXFL" ],
+			"Parm": {
+				"XFLDir": "Path",
+				"JSONFile": "Path",
+				"ImageSize": "Int"
+			}
+		}, {
+			"Func": [ "AnimUtil", "PopAnimUtil", "Converter", "XFLScaleCnv" ],
+			"Parm": {
+				"XFLDir": "Path",
+				"SrcSize": "Int",
+				"DstSize": "Int"
+			}
+		}, {
+			"Func": [ "AnimUtil", "PopAnimUtil", "Converter", "CnvToRipe" ],
+			"Parm": {
+				"JSONFile": "Path",
+				"RipeJSONFile": "Path"
+			}
+		}, {
+			"Func": [ "AnimUtil", "PopAnimUtil", "Converter", "CnvToXFL_OneStep" ],
+			"Parm": {
+				"PopAnimFile": "Path",
+				"XFLDir": "Path",
+				"ImageSize": "Int"
+			}
+		}, {
+			"Func": [ "AnimUtil", "PopAnimUtil", "Converter", "CnvFromXFL_OneStep" ],
+			"Parm": {
+				"XFLDir": "Path",
+				"PopAnimFile": "Path",
+				"ImageSize": "Int",
+				"MemorySize": "Int"
+			}
+		}, {
+			"Func": [ "AnimUtil", "PopAnimUtil", "Converter", "CnvToRipe_OneStep" ],
+			"Parm": {
+				"PopAnimFile": "Path",
+				"RipeJSONFile": "Path"
+			}
+		}, {
+			"Func": [ "SpecialMod", "PvZ-2", "LawnStrTextUtil", "JSONToText" ],
+			"Parm": {
+				"JSONFile": "Path",
+				"TextFile": "Path"
+			}
+		}, {
+			"Func": [ "SpecialMod", "PvZ-2", "LawnStrTextUtil", "TextToJSON" ],
+			"Parm": {
+				"TextFile": "Path",
+				"JSONFile": "Path"
+			}
+		}, {
+			"Func": [ "SpecialMod", "PvZ-2", "RSBPatch", "PatchResInfo" ],
+			"Parm": {
+				"PatchFile": "Path",
+				"SrcFile": "Path",
+				"DstFile": "Path"
+			}
+		}, {
+			"Func": [ "SpecialMod", "PvZ-2", "RSBPatch", "PatchStructInfo" ],
+			"Parm": {
+				"PatchFile": "Path",
+				"SrcFile": "Path",
+				"DstFile": "Path"
+			}
+		}, {
+			"Func": [ "SpecialMod", "PvZ-2", "RSBPatch", "PatchRes" ],
+			"Parm": {
+				"PatchFile": "Path",
+				"StructInfoFile": "Path",
+				"SrcResDir": "Path",
+				"DstGroupDir": "Path"
+			}
+		}, {
+			"Func": [ "SpecialMod", "PvZ-2", "Mod", "Apply" ],
+			"Parm": {
+				"ModDir": "Path",
+				"EnvFile": "Path"
+			}
+		}, {
+			"Func": [ "SpecialMod", "PvZ-2", "Mod", "EnvIntro" ],
+			"Parm": {
+				"EnvFile": "Path"
+			}
+		}, {
+			"Func": [ "SpecialMod", "PvZ-2", "Mod", "EnvOutro" ],
+			"Parm": {
+				"EnvFile": "Path"
+			}
+		}, {
+			"Func": [ "JSONPatch", "Apply" ],
+			"Parm": {
+				"PatchFile": "Path",
+				"SrcFile": "Path",
+				"DstFile": "Path"
+			}
+		}, {
+			"Func": [ "NonStdFunc", "GetFileNameNoPathNoSuffixFromDir" ],
+			"Parm": {
+				"SrcDir": "Path",
+				"DstFile": "Path"
+			}
+		}, {
+			"Func": [ "NonStdFunc", "GetEventIDFromPAMDir" ],
+			"Parm": {
+				"SrcDir": "Path",
+				"DstFile": "Path"
+			}
+		}, {
+			"Func": [ "NonStdFunc", "AnalysisManifest" ],
+			"Parm": {
+				"SrcFile": "Path",
+				"DstDir": "Path"
+			}
+		}, {
+			"Func": [ "NonStdFunc", "CnvMapperTextToJSON" ],
+			"Parm": {
+				"SrcFile": "Path",
+				"DstFile": "Path"
+			}
+		}, {
+			"Func": [ "NonStdFunc", "BatchCpyLevelFile" ],
+			"Parm": {
+				"SrcFile": "Path",
+				"DstDir": "Path",
+				"Prefix": "Str",
+				"Suffix": "Str",
+				"Sum": "Int"
+			}
+		}, {
+			"Func": [ "NonStdFunc", "ReNameFileCase" ],
+			"Parm": {
+				"OriListDataFile": "Path",
+				"TargetDir": "Path"
+			}
+		}, {
+			"Func": [ "NonStdFunc", "MixBNKSubList" ],
+			"Parm": {
+				"SrcAFile": "Path",
+				"SrcBFile": "Path",
+				"DstFile": "Path"
+			}
+		}, {
+			"Func": [ "NonStdFunc", "CompressRawRSBSMF" ],
+			"Parm": {
+				"SrcFile": "Path",
+				"DstFile": "Path"
+			}
+		}, {
+			"Func": [ "NonStdFunc", "UnCompressRawRSBSMF" ],
+			"Parm": {
+				"SrcFile": "Path",
+				"DstFile": "Path"
+			}
+		}, {
+			"Func": [ "NonStdFunc", "CnvWEM" ],
+			"Parm": {
+				"SrcFile": "Path",
+				"DstFile": "Path"
+			}
+		}, {
+			"Func": [ "NonStdFunc", "XCatRSBResInfoByPart" ],
+			"Parm": {
+				"RawResInfoPartDir": "Path",
+				"PartIDListFile": "Path",
+				"PartInfoListFile": "Path",
+				"ResInfoFile": "Path"
+			}
+		}, {
+			"Func": [ "NonStdFunc", "XSplitRSBResInfoByPart" ],
+			"Parm": {
+				"RawResInfoPartDir": "Path",
+				"PartInfoListFile": "Path",
+				"ResInfoFile": "Path",
+				"MemorySize": "Int"
+			}
+		}, {
+			"Func": [ "NonStdFunc", "MixRSBResInfoToHD" ],
+			"Parm": {
+				"BaseInfoFile": "Path",
+				"HDInfoFile": "Path",
+				"DstInfoFile": "Path",
+				"LowResID": "Int",
+				"HighResID": "Int"
+			}
+		}, {
+			"Func": [ "NonStdFunc", "MixRSBStructInfoToHD" ],
+			"Parm": {
+				"BaseInfoFile": "Path",
+				"HDInfoFile": "Path",
+				"DstInfoFile": "Path",
+				"LowResID": "Int",
+				"HighResID": "Int"
+			}
+		} ],
+	"GlobalVar": {
+		"STD_SCRIPT_DIR": {
+			"Type": "Path",
+			"Val": [ "@P $ !STORAGE_DIR", "SPCUtil", "Script" ]
+		},
+		"PVZ2_MOD_ENV_FILE": {
+			"Type": "Path",
+			"Val": [ "@P $ !STORAGE_DIR", "SPCUtil", "PvZ2ModEnv.json" ]
+		},
+		"KEY_OF_RTON_CRYPT_VER_CHS": {
+			"Type": "Str",
+			"Val": "",
+			"//": "set private key in here, use default key if val.isEmpty()"
+		}
+	},
+	"IntroScript": [ {
+			"Cmt": "IntroScript中设置JSON读写的Buffer大小，默认为64M，即能够读写最大64M的JSON文件，如有需要，请在Config中修改",
+			"Type": "Call",
+			"Func": [ "Setting", "JSONIOBuf", "ModSize" ],
+			"Parm": {
+				"Size": "@ ! ByteSize_Str 64M"
+			}
+		}, {
+			"Type": "Call",
+			"Func": [ "Setting", "JSONStyle", "SetStyle" ],
+			"Parm": {
+				"OutNewLineIfElement": false
+			}
+		} ],
+	"QuickEnter": {
+		"AlwaysUseOneScript": true,
+		"IgnoreFilter": false,
+		"IgnoreSuffixCase": true,
+		"EnableBatchMode": true,
+		"ForceBatchIfDir": false,
+		"Option": {
+			"Data Util": {
+				"ZLIB Compress": {
+					"Filter": [ [ "file:", "suffix:*" ] ],
+					"Tip": {
+						"In": "file : *  - Non-Compress",
+						"Out": "file : ~* - Compress-Ed"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "DataUtil", "Compressor", "ZLIB", "Compress" ],
+						"Parm": {
+							"RawFile": "@ $ !ENTER_PATH",
+							"RipeFile": "@ $ !ENTER_PATH #. Path_SetPrefix ~",
+							"Ofs": 0,
+							"Lv": 9
+						}
+					}
+				},
+				"ZLIB UnCompress": {
+					"Filter": [ [ "file:", "suffix:*" ] ],
+					"Tip": {
+						"In": "file - Compress-Ed",
+						"Out": "file - Non-Compress"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "DataUtil", "Compressor", "ZLIB", "UnCompress" ],
+						"Parm": {
+							"RipeFile": "@ $ !ENTER_PATH",
+							"RawFile": "@ $ !ENTER_PATH #. Path_SetPrefix ~",
+							"Ofs": 0,
+							"BufRate": 8
+						}
+					}
+				},
+				"XOR Crypt - Byte Key": {
+					"Filter": [ [ "file:", "suffix:*" ] ],
+					"Tip": {
+						"In": "file - Plain",
+						"Out": "file - Cipher"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "DataUtil", "Encryptor", "XOR", "Crypt" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH",
+							"DstFile": "@ $ !ENTER_PATH #. Path_SetPrefix ~",
+							"Key": "@ ? Int"
+						}
+					}
+				},
+				"XOR Crypt - String Key": {
+					"Filter": [ [ "file:", "suffix:*" ] ],
+					"Tip": {
+						"In": "file - Plain",
+						"Out": "file - Cipher"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "DataUtil", "Encryptor", "XOR", "CryptByStrKey" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH",
+							"DstFile": "@ $ !ENTER_PATH #. Path_SetPrefix ~",
+							"Key": "@ ? Str"
+						}
+					}
+				},
+				"Base64 EnCrypt": {
+					"Filter": [ [ "file:", "suffix:*" ] ],
+					"Tip": {
+						"In": "file - Plain",
+						"Out": "file - Cipher"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "DataUtil", "Encryptor", "Base64", "EnCrypt" ],
+						"Parm": {
+							"PlainFile": "@ $ !ENTER_PATH",
+							"CipherFile": "@ $ !ENTER_PATH #. Path_SetPrefix ~"
+						}
+					}
+				},
+				"Base64 DeCrypt": {
+					"Filter": [ [ "file:", "suffix:*" ] ],
+					"Tip": {
+						"In": "file - Cipher",
+						"Out": "file - Plain"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "DataUtil", "Encryptor", "Base64", "DeCrypt" ],
+						"Parm": {
+							"CipherFile": "@ $ !ENTER_PATH",
+							"PlainFile": "@ $ !ENTER_PATH #. Path_SetPrefix ~"
+						}
+					}
+				},
+				"PvZ2_CHS_IRE EnCrypt": {
+					"Filter": [ [ "file:", "suffix:*" ] ],
+					"Tip": {
+						"In": "file - Plain",
+						"Out": "file - Cipher"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "DataUtil", "Encryptor", "PvZ2_CHS_IRE", "EnCrypt" ],
+						"Parm": {
+							"PlainFile": "@ $ !ENTER_PATH",
+							"CipherFile": "@ $ !ENTER_PATH #. Path_SetPrefix ~",
+							"DataBlockSum": 6,
+							"BufBlockSum": 8,
+							"Key": "",
+							"IV": ""
+						}
+					}
+				},
+				"PvZ2_CHS_IRE DeCrypt": {
+					"Filter": [ [ "file:", "suffix:*" ] ],
+					"Tip": {
+						"In": "file - Cipher",
+						"Out": "file - Plain"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "DataUtil", "Encryptor", "PvZ2_CHS_IRE", "DeCrypt" ],
+						"Parm": {
+							"CipherFile": "@ $ !ENTER_PATH",
+							"PlainFile": "@ $ !ENTER_PATH #. Path_SetPrefix ~",
+							"DataBlockSum": 6,
+							"BufBlockSum": 8,
+							"Key": "",
+							"IV": ""
+						}
+					}
+				}
+			},
+			"JSON Util": {
+				"JSON-Format": {
+					"Filter": [ [ "file:", "suffix:json" ], [ "file:", "suffix:suc" ], [ "file:", "suffix:sus" ], [ "file:", "suffix:surps" ] ],
+					"Tip": {
+						"In": "file - Source-JSON",
+						"Out": "file - Format-JSON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "JSONUtil", "FmtFile" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH",
+							"DstFile": "@ $ !ENTER_PATH #. Path_SetPrefix ~"
+						}
+					}
+				},
+				"Patch JSON": {
+					"Filter": [ [ "file:", "suffix:jsonpatch" ] ],
+					"Tip": {
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "JSONPatch", "Apply" ],
+						"Var": {
+							"SrcFile": {
+								"Type": "Path",
+								"Val": "@ ? Path_File"
+							}
+						},
+						"Parm": {
+							"PatchFile": "@ $ !ENTER_PATH",
+							"SrcFile": "@ $ SrcFile",
+							"DstFile": "@ $ SrcFile #. Path_SetPrefix ~"
+						}
+					}
+				}
+			},
+			"RTON Util": {
+				"RTON-EnCode": {
+					"Filter": [ [ "file:", "suffix:json" ] ],
+					"Tip": {
+						"In": "file : *.json - JSON",
+						"Out": "file : *.rton - RTON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "RTONUtil", "Encoder", "EnCode" ],
+						"Parm": {
+							"JSONFile": "@ $ !ENTER_PATH",
+							"RTONFile": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix rton",
+							"UseCacheStr": true,
+							"UseSpecialTypeForRTID": true,
+							"MemorySize": "@ ! ByteSize_Str 64M"
+						}
+					}
+				},
+				"RTON-DeCode": {
+					"Filter": [ [ "file:", "suffix:rton" ], [ "file:", "substr:pp.dat" ] ],
+					"Tip": {
+						"In": "file - RTON",
+						"Out": "file - JSON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "RTONUtil", "Encoder", "DeCode" ],
+						"Parm": {
+							"RTONFile": "@ $ !ENTER_PATH",
+							"JSONFile": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix json",
+							"RTONDataOfs": 0
+						}
+					}
+				},
+				"RTON-EnCrypt": {
+					"Filter": [ [ "file:", "suffix:rton" ] ],
+					"Tip": {
+						"In": "file - RTON",
+						"Out": "file - C-RTON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "RTONUtil", "Encryptor", "EnCrypt" ],
+						"Parm": {
+							"PlainFile": "@ $ !ENTER_PATH",
+							"CipherFile": "@ $ !ENTER_PATH #. Path_SetPrefix ~",
+							"DataBlockSum": 6,
+							"BufBlockSum": 8,
+							"Key": "@ $ KEY_OF_RTON_CRYPT_VER_CHS"
+						}
+					}
+				},
+				"RTON-DeCrypt": {
+					"Filter": [ [ "file:", "suffix:rton" ], [ "file:", "suffix:crton" ] ],
+					"Tip": {
+						"In": "file - C-RTON",
+						"Out": "file - RTON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "RTONUtil", "Encryptor", "DeCrypt" ],
+						"Parm": {
+							"CipherFile": "@ $ !ENTER_PATH",
+							"PlainFile": "@ $ !ENTER_PATH #. Path_SetPrefix ~",
+							"Key": "@ $ KEY_OF_RTON_CRYPT_VER_CHS"
+						}
+					}
+				}
+			},
+			"PAK Util": {
+				"PAK-Pack": {
+					"Filter": [ [ "dir:", "suffix:dir", "substr:.pak.dir" ] ],
+					"Tip": {
+						"In": "dir - PAK",
+						"Out": "file - PAK"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ResPkgUtil", "PAKUtil", "Packer", "Pack" ],
+						"Parm": {
+							"PkgFile": "@ $ !ENTER_PATH # Path_EraseSuffix",
+							"MainDir": "@ $ !ENTER_PATH",
+							"MemorySize": "@ ! ByteSize_Str 1024M"
+						}
+					}
+				},
+				"PAK-UnPack": {
+					"Filter": [ [ "file:", "suffix:pak" ] ],
+					"Tip": {
+						"In": "file - PAK",
+						"Out": "dir - PAK"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ResPkgUtil", "PAKUtil", "Packer", "UnPack" ],
+						"Parm": {
+							"PkgFile": "@ $ !ENTER_PATH",
+							"MainDir": "@ $ !ENTER_PATH #. Path_SetSuffix dir"
+						}
+					}
+				}
+			},
+			"DZ Util": {
+				"DZ-Pack": {
+					"Filter": [ [ "dir:", "suffix:dir", "substr:.dz.dir" ] ],
+					"Tip": {
+						"In": "dir - DZ",
+						"Out": "file - DZ"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ResPkgUtil", "DZUtil", "Packer", "Pack" ],
+						"Parm": {
+							"PkgFile": "@ $ !ENTER_PATH # Path_EraseSuffix",
+							"MainDir": "@ $ !ENTER_PATH",
+							"MemorySize": "@ ! ByteSize_Str 1024M"
+						}
+					}
+				},
+				"DZ-UnPack": {
+					"Filter": [ [ "file:", "suffix:dz" ] ],
+					"Tip": {
+						"In": "file - DZ",
+						"Out": "dir - DZ"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ResPkgUtil", "DZUtil", "Packer", "UnPack" ],
+						"Parm": {
+							"PkgFile": "@ $ !ENTER_PATH",
+							"MainDir": "@ $ !ENTER_PATH #. Path_SetSuffix dir"
+						}
+					}
+				}
+			},
+			"RSGP Util": {
+				"RSGP-Pack": {
+					"Filter": [ [ "dir:", "suffix:dir", "substr:.rsgp.dir" ] ],
+					"Tip": {
+						"In": "dir - RSGP",
+						"Out": "file - RSGP"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ResPkgUtil", "RSGPUtil", "Packer", "Pack" ],
+						"Parm": {
+							"PkgFile": "@ $ !ENTER_PATH # Path_EraseSuffix",
+							"MainDir": "@ $ !ENTER_PATH",
+							"CipherTextUpperCase": true,
+							"MemorySize": "@ ! ByteSize_Str 1024M"
+						}
+					}
+				},
+				"RSGP-UnPack": {
+					"Filter": [ [ "file:", "suffix:rsgp" ] ],
+					"Tip": {
+						"In": "file - RSGP",
+						"Out": "dir - RSGP"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ResPkgUtil", "RSGPUtil", "Packer", "UnPack" ],
+						"Parm": {
+							"PkgFile": "@ $ !ENTER_PATH",
+							"MainDir": "@ $ !ENTER_PATH #. Path_SetSuffix dir"
+						}
+					}
+				}
+			},
+			"RSB Util": {
+				"SMF-Compress": {
+					"Filter": [ [ "file:", "suffix:smf", "substr:.rsb.smf" ] ],
+					"Tip": {
+						"In": "file - SMF-NonCompress",
+						"Out": "file - SMF-CompressEd"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "NonStdFunc", "CompressRawRSBSMF" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH",
+							"DstFile": "@ $ !ENTER_PATH #. Path_SetPrefix ~"
+						}
+					}
+				},
+				"SMF-UnCompress": {
+					"Filter": [ [ "file:", "suffix:smf", "substr:.rsb.smf" ] ],
+					"Tip": {
+						"In": "file - SMF-CompressEd",
+						"Out": "file - SMF-NonCompress"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "NonStdFunc", "UnCompressRawRSBSMF" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH",
+							"DstFile": "@ $ !ENTER_PATH #. Path_SetPrefix ~"
+						}
+					}
+				},
+				"RSB-Pack": {
+					"Filter": [ [ "dir:", "suffix:dir", "substr:.rsb.dir" ], [ "dir:", "suffix:dir", "substr:.obb.dir" ], [ "dir:", "suffix:dir", "substr:.smf.dir" ] ],
+					"Tip": {
+						"In": "dir - RSB",
+						"Out": "file - RSB"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ResPkgUtil", "RSBUtil", "Packer", "Pack" ],
+						"Parm": {
+							"PkgFile": "@ $ !ENTER_PATH # Path_EraseSuffix",
+							"MainDir": "@ $ !ENTER_PATH",
+							"PackFromGroup": "@ ? Bool",
+							"PackRSGPByMainInfo": "@ ? Bool",
+							"OutPutNewPacket": "@ ? Bool",
+							"UseReadyPacket": "@ ? Bool",
+							"CipherTextUpperCase": true,
+							"MemorySize": "@ ! ByteSize_Str 1024M"
+						}
+					}
+				},
+				"RSB-UnPack": {
+					"Filter": [ [ "file", "suffix:rsb" ], [ "file:", "suffix:obb" ], [ "file:", "suffix:smf" ] ],
+					"Tip": {
+						"In": "file - RSB",
+						"Out": "dir - RSB"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ResPkgUtil", "RSBUtil", "Packer", "UnPack" ],
+						"Parm": {
+							"PkgFile": "@ $ !ENTER_PATH",
+							"MainDir": "@ $ !ENTER_PATH #. Path_SetSuffix dir",
+							"OutPut_Res": "@ ? Bool",
+							"OutPut_Packet": "@ ? Bool",
+							"OutPut_PacketInfo": "@ ? Bool",
+							"OutPut_Group": "@ ? Bool",
+							"OutPut_Group_Res": "@ ? Bool",
+							"OutPut_Group_Packet": "@ ? Bool"
+						}
+					}
+				},
+				"RSB-UnPack From Part": {
+					"Filter": [ [ "dir:", "suffix:Part" ] ],
+					"Tip": {
+						"In": "file - MULTI-RSB",
+						"Out": "dir - RSB"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ResPkgUtil", "RSBUtil", "Packer", "UnPackFromPart" ],
+						"Parm": {
+							"PartDir": "@ $ !ENTER_PATH",
+							"MainDir": "@ $ !ENTER_PATH #. Path_EraseSuffix #. Path_SetSuffix dir",
+							"OutPut_Res": "@ ? Bool",
+							"OutPut_Packet": "@ ? Bool",
+							"OutPut_PacketInfo": "@ ? Bool",
+							"OutPut_Group": "@ ? Bool",
+							"OutPut_Group_Res": "@ ? Bool",
+							"OutPut_Group_Packet": "@ ? Bool"
+						}
+					}
+				},
+				"RSB-Pack To Part": {
+					"Filter": [ [ "dir:", "suffix:dir", "substr:rsb.dir" ] ],
+					"Tip": {
+						"In": "dir - RSB",
+						"Out": "file - MULTI-RSB"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ResPkgUtil", "RSBUtil", "Packer", "PackToPart" ],
+						"Parm": {
+							"PartDir": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix Part",
+							"MainDir": "@ $ !ENTER_PATH",
+							"PackFromGroup": "@ ? Bool",
+							"PackRSGPByMainInfo": "@ ? Bool",
+							"OutPutNewPacket": "@ ? Bool",
+							"UseReadyPacket": "@ ? Bool",
+							"CipherTextUpperCase": true,
+							"MemorySize": "@ ! ByteSize_Str 1024M"
+						}
+					}
+				},
+				"RSB Res Ext": {
+					"Filter": [ [ "file", "suffix:rsb" ], [ "file:", "suffix:obb" ], [ "file:", "suffix:smf" ] ],
+					"Tip": {
+						"In": "file - RSB",
+						"Out": "dir - RSB-Res"
+					},
+					"Script": {
+						"Type": "Link",
+						"Script": [ "@P $ STD_SCRIPT_DIR", "RSBResExt.sus" ],
+						"Var": {
+							"=File": {
+								"Type": "Path",
+								"Val": "@ $ !ENTER_PATH"
+							}
+						}
+					}
+				},
+				"RSB Ext": {
+					"Filter": [ [ "file", "suffix:rsb" ], [ "file:", "suffix:obb" ], [ "file:", "suffix:smf" ] ],
+					"Tip": {
+						"In": "file - RSB",
+						"Out": "dir - RSB"
+					},
+					"Script": {
+						"Type": "Link",
+						"Script": [ "@P $ STD_SCRIPT_DIR", "RSBExt.sus" ],
+						"Var": {
+							"=File": {
+								"Type": "Path",
+								"Val": "@ $ !ENTER_PATH"
+							}
+						}
+					}
+				},
+				"RSB Build": {
+					"Filter": [ [ "dir:", "suffix:dir", "substr:.rsb.dir" ], [ "dir:", "suffix:dir", "substr:.obb.dir" ], [ "dir:", "suffix:dir", "substr:.smf.dir" ] ],
+					"Tip": {
+						"In": "dir - RSB",
+						"Out": "file - RSB"
+					},
+					"Script": {
+						"Type": "Link",
+						"Script": [ "@P $ STD_SCRIPT_DIR", "RSBBuild.sus" ],
+						"Var": {
+							"=File": {
+								"Type": "Path",
+								"Val": "@ $ !ENTER_PATH # Path_EraseSuffix"
+							},
+							"=Dir": {
+								"Type": "Path",
+								"Val": "@ $ !ENTER_PATH"
+							}
+						}
+					}
+				},
+				"RSB Build By Res": {
+					"Filter": [ [ "dir:", "suffix:dir", "substr:.rsb.dir" ], [ "dir:", "suffix:dir", "substr:.obb.dir" ], [ "dir:", "suffix:dir", "substr:.smf.dir" ] ],
+					"Tip": {
+						"In": "dir - RSB",
+						"Out": "file - RSB"
+					},
+					"Script": {
+						"Type": "Link",
+						"Script": [ "@P $ STD_SCRIPT_DIR", "RSBBuildByRes.sus" ],
+						"Var": {
+							"=File": {
+								"Type": "Path",
+								"Val": "@ $ !ENTER_PATH # Path_EraseSuffix"
+							},
+							"=Dir": {
+								"Type": "Path",
+								"Val": "@ $ !ENTER_PATH"
+							}
+						}
+					}
+				}
+			},
+			"IMG Util": {
+				"PTX-EnCode": {
+					"Filter": [ [ "file", "suffix:png" ] ],
+					"Tip": {
+						"In": "file - PNG",
+						"Out": "file - PTX"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "PopTexEncoder", "EnCode" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH",
+							"DstFile": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix ptx",
+							"Size": "@ ! IntList_ImageSize $ !ENTER_PATH",
+							"TexFmt": "@ ? Str"
+						}
+					}
+				},
+				"PTX-EnCode RGBA32 For Android": {
+					"Filter": [ [ "file", "suffix:png" ] ],
+					"Tip": {
+						"In": "file - PNG",
+						"Out": "file - PTX"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "PopTexEncoder", "EnCode" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH",
+							"DstFile": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix ptx",
+							"Size": "@ ! IntList_ImageSize $ !ENTER_PATH",
+							"TexFmt": "RGBAd32x8888eB"
+						}
+					}
+				},
+				"PTX-EnCode ETC1+ALPHA For Android": {
+					"Filter": [ [ "file", "suffix:png" ] ],
+					"Tip": {
+						"In": "file - PNG",
+						"Out": "file - PTX"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "PopTexEncoder", "EnCode" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH",
+							"DstFile": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix ptx",
+							"Size": "@ ! IntList_ImageSize $ !ENTER_PATH",
+							"TexFmt": "RGBcETC1sAd8"
+						}
+					}
+				},
+				"PTX-EnCode ARGB32 For iOS": {
+					"Filter": [ [ "file", "suffix:png" ] ],
+					"Tip": {
+						"In": "file - PNG",
+						"Out": "file - PTX"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "PopTexEncoder", "EnCode" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH",
+							"DstFile": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix ptx",
+							"Size": "@ ! IntList_ImageSize $ !ENTER_PATH",
+							"TexFmt": "ARGBd32x8888eL"
+						}
+					}
+				},
+				"PTX-EnCode PVRTC-4BPP For iOS": {
+					"Filter": [ [ "file", "suffix:png" ] ],
+					"Tip": {
+						"In": "file - PNG",
+						"Out": "file - PTX"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "PopTexEncoder", "EnCode" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH",
+							"DstFile": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix ptx",
+							"Size": "@ ! IntList_ImageSize $ !ENTER_PATH",
+							"TexFmt": "RGBAcPVRTC4BPP"
+						}
+					}
+				},
+				"PTX-DeCode": {
+					"Filter": [ [ "file", "suffix:ptx" ] ],
+					"Tip": {
+						"In": "file - PTX",
+						"Out": "file - PNG"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "PopTexEncoder", "DeCode" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH",
+							"DstFile": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix png",
+							"Size": [ "@ ? Int", "@ ? Int" ],
+							"TexFmt": "@ ? Str"
+						}
+					}
+				},
+				"PTX-DeCode RGBA32 For Android": {
+					"Filter": [ [ "file", "suffix:ptx" ] ],
+					"Tip": {
+						"In": "file - PTX",
+						"Out": "file - PNG"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "PopTexEncoder", "DeCode" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH",
+							"DstFile": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix png",
+							"Size": [ "@ ? Int", "@ ? Int" ],
+							"TexFmt": "RGBAd32x8888eB"
+						}
+					}
+				},
+				"PTX-DeCode ETC1+ALPHA For Android": {
+					"Filter": [ [ "file", "suffix:ptx" ] ],
+					"Tip": {
+						"In": "file - PTX",
+						"Out": "file - PNG"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "PopTexEncoder", "DeCode" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH",
+							"DstFile": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix png",
+							"Size": [ "@ ? Int", "@ ? Int" ],
+							"TexFmt": "RGBcETC1sAd8"
+						}
+					}
+				},
+				"PTX-DeCode ARGB32 For iOS": {
+					"Filter": [ [ "file", "suffix:ptx" ] ],
+					"Tip": {
+						"In": "file - PTX",
+						"Out": "file - PNG"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "PopTexEncoder", "DeCode" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH",
+							"DstFile": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix png",
+							"Size": [ "@ ? Int", "@ ? Int" ],
+							"TexFmt": "ARGBd32x8888eL"
+						}
+					}
+				},
+				"PTX-DeCode PVRTC-4BPP For iOS": {
+					"Filter": [ [ "file", "suffix:ptx" ] ],
+					"Tip": {
+						"In": "file - PTX",
+						"Out": "file - PNG"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "PopTexEncoder", "DeCode" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH",
+							"DstFile": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix png",
+							"Size": [ "@ ? Int", "@ ? Int" ],
+							"TexFmt": "RGBAcPVRTC4BPP"
+						}
+					}
+				},
+				"PTX-EnCodeAtlasList": {
+					"Filter": [ [ "dir" ] ],
+					"Tip": {
+						"In": "dir - PNG",
+						"Out": "dir - PTX"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "PopTexEncoder", "EnCodeAtlasList" ],
+						"Parm": {
+							"AtlasInfoListFile": "@ ? Path_File",
+							"SrcDir": "@ $ !ENTER_PATH",
+							"DstDir": "@ $ !ENTER_PATH #. Path_SetPrefix ~"
+						}
+					}
+				},
+				"PTX-DeCodeAtlasList": {
+					"Filter": [ [ "dir" ] ],
+					"Tip": {
+						"In": "dir - PNG",
+						"Out": "dir - SPLIT-PNG"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "PopTexEncoder", "DeCodeAtlasList" ],
+						"Parm": {
+							"AtlasInfoListFile": "@ ? Path_File",
+							"SrcDir": "@ $ !ENTER_PATH",
+							"DstDir": "@ $ !ENTER_PATH #. Path_SetPrefix ~"
+						}
+					}
+				},
+				"IMG-Cat": {
+					"Filter": [ [ "file", "suffix:png" ] ],
+					"Tip": {
+						"In": "dir - SPLIT-PNG",
+						"Out": "file - PNG"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "Spliter", "Cat" ],
+						"Parm": {
+							"AtlasSize": [ "@ ? Int", "@ ? Int" ],
+							"ImageInfoListFile": "@ ? Path_File",
+							"SrcDir": "@ $ !ENTER_PATH # Path_EraseSuffix",
+							"DstFile": "@ $ !ENTER_PATH"
+						}
+					}
+				},
+				"IMG-Split": {
+					"Filter": [ [ "file", "suffix:png" ] ],
+					"Tip": {
+						"In": "file - PNG",
+						"Out": "dir - SPLIT-PNG"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "Spliter", "Split" ],
+						"Parm": {
+							"ImageInfoListFile": "@ ? Path_File",
+							"SrcFile": "@ $ !ENTER_PATH",
+							"DstDir": "@ $ !ENTER_PATH # Path_EraseSuffix"
+						}
+					}
+				},
+				"IMG-CatByAtlasInfo": {
+					"Filter": [ [ "dir" ] ],
+					"Tip": {
+						"In": "dir - SPLIT-PNG",
+						"Out": "dir - PNG"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "Spliter", "CatByAtlasInfo" ],
+						"Parm": {
+							"AtlasInfoFile": "@ ? Path_File",
+							"SrcDir": "@ $ !ENTER_PATH",
+							"DstDir": "@ $ !ENTER_PATH #. Path_SetPrefix ~",
+							"UseSingleDir": "@ ? Bool"
+						}
+					}
+				},
+				"IMG-SplitByAtlasInfo": {
+					"Filter": [ [ "dir" ] ],
+					"Tip": {
+						"In": "dir - PNG",
+						"Out": "dir - SPLIT-PNG"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "Spliter", "SplitByAtlasInfo" ],
+						"Parm": {
+							"AtlasInfoFile": "@ ? Path_File",
+							"SrcDir": "@ $ !ENTER_PATH",
+							"DstDir": "@ $ !ENTER_PATH #. Path_SetPrefix ~",
+							"UseSingleDir": "@ ? Bool"
+						}
+					}
+				},
+				"IMG-CatByAtlasInfoList": {
+					"Filter": [ [ "dir" ] ],
+					"Tip": {
+						"In": "dir - SPLIT-PNG",
+						"Out": "dir - PNG"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "Spliter", "CatByAtlasInfoList" ],
+						"Parm": {
+							"AtlasInfoListFile": "@ ? Path_File",
+							"SrcDir": "@ $ !ENTER_PATH",
+							"DstDir": "@ $ !ENTER_PATH #. Path_SetPrefix ~",
+							"UseSingleDir": "@ ? Bool"
+						}
+					}
+				},
+				"IMG-SplitByAtlasInfoList": {
+					"Filter": [ [ "dir" ] ],
+					"Tip": {
+						"In": "dir - PNG",
+						"Out": "dir - SPLIT-PNG"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "Spliter", "SplitByAtlasInfoList" ],
+						"Parm": {
+							"AtlasInfoListFile": "@ ? Path_File",
+							"SrcDir": "@ $ !ENTER_PATH",
+							"DstDir": "@ $ !ENTER_PATH #. Path_SetPrefix ~",
+							"UseSingleDir": "@ ? Bool"
+						}
+					}
+				}
+			},
+			"PAM Util": {
+				"PAM-EnCode": {
+					"Filter": [ [ "file:", "suffix:json" ] ],
+					"Tip": {
+						"In": "file - JSON",
+						"Out": "file - PAM"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "AnimUtil", "PopAnimUtil", "Encoder", "EnCode" ],
+						"Parm": {
+							"JSONFile": "@ $ !ENTER_PATH",
+							"PopAnimFile": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix pam",
+							"MemorySize": "@ ! ByteSize_Str 1024M"
+						}
+					}
+				},
+				"PAM-DeCode": {
+					"Filter": [ [ "file:", "suffix:pam" ] ],
+					"Tip": {
+						"In": "file - PAM",
+						"Out": "file - JSON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "AnimUtil", "PopAnimUtil", "Encoder", "DeCode" ],
+						"Parm": {
+							"PopAnimFile": "@ $ !ENTER_PATH",
+							"JSONFile": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix json"
+						}
+					}
+				},
+				"PAM-Convert-To-XFL": {
+					"Filter": [ [ "file:", "suffix:json" ] ],
+					"Tip": {
+						"In": "file - JSON",
+						"Out": "dir - XFL"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "AnimUtil", "PopAnimUtil", "Converter", "CnvToXFL" ],
+						"Parm": {
+							"JSONFile": "@ $ !ENTER_PATH",
+							"XFLDir": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix xfl",
+							"ImageSize": 1536
+						}
+					}
+				},
+				"PAM-Convert-From-XFL": {
+					"Filter": [ [ "dir:", "suffix:xfl" ] ],
+					"Tip": {
+						"In": "dir - XFL",
+						"Out": "file - JSON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "AnimUtil", "PopAnimUtil", "Converter", "CnvFromXFL" ],
+						"Parm": {
+							"XFLDir": "@ $ !ENTER_PATH",
+							"JSONFile": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix json",
+							"ImageSize": 1536
+						}
+					}
+				},
+				"XFL-Scale-Cnv": {
+					"Filter": [ [ "dir:", "suffix:xfl" ] ],
+					"Tip": {
+						"In": "dir - XFL",
+						"Out": "file - JSON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "AnimUtil", "PopAnimUtil", "Converter", "XFLScaleCnv" ],
+						"Parm": {
+							"XFLDir": "@ $ !ENTER_PATH",
+							"SrcSize": "@ ? Int",
+							"DstSize": "@ ? Int"
+						}
+					}
+				},
+				"PAM-Convert-To-RipeJSON": {
+					"Filter": [ [ "file:", "suffix:json" ] ],
+					"Tip": {
+						"In": "file - JSON",
+						"Out": "file - RipeJSON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "AnimUtil", "PopAnimUtil", "Converter", "CnvToRipe" ],
+						"Parm": {
+							"JSONFile": "@ $ !ENTER_PATH",
+							"RipeJSONFile": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix ripe.json"
+						}
+					}
+				},
+				"PAM-Convert-To-XFL-OneStep": {
+					"Filter": [ [ "file:", "suffix:pam" ] ],
+					"Tip": {
+						"In": "file - JSON",
+						"Out": "dir - XFL"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "AnimUtil", "PopAnimUtil", "Converter", "CnvToXFL_OneStep" ],
+						"Parm": {
+							"PopAnimFile": "@ $ !ENTER_PATH",
+							"XFLDir": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix xfl",
+							"ImageSize": 1536
+						}
+					}
+				},
+				"PAM-Convert-From-XFL-OneStep": {
+					"Filter": [ [ "dir:", "suffix:xfl" ] ],
+					"Tip": {
+						"In": "dir - XFL",
+						"Out": "file - JSON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "AnimUtil", "PopAnimUtil", "Converter", "CnvFromXFL_OneStep" ],
+						"Parm": {
+							"XFLDir": "@ $ !ENTER_PATH",
+							"PopAnimFile": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix pam",
+							"ImageSize": 1536,
+							"MemorySize": "@ ! ByteSize_Str 64M"
+						}
+					}
+				},
+				"PAM-Convert-To-RipeJSON-OneStep": {
+					"Filter": [ [ "file:", "suffix:pam" ] ],
+					"Tip": {
+						"In": "file - PAM",
+						"Out": "file - RipeJSON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "AnimUtil", "PopAnimUtil", "Converter", "CnvToRipe_OneStep" ],
+						"Parm": {
+							"PopAnimFile": "@ $ !ENTER_PATH",
+							"RipeJSONFile": "@ $ !ENTER_PATH # Path_EraseSuffix #. Path_SetSuffix ripe.json"
+						}
+					}
+				}
+			},
+			"BNK Util": {
+				"BNK-Pack": {
+					"Filter": [ [ "dir:", "suffix:dir", "substr:.bnk.dir" ] ],
+					"Tip": {
+						"In": "dir - BNK",
+						"Out": "file - BNK"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "AudioUtil", "SoundBankUtil", "Packer", "Pack" ],
+						"Parm": {
+							"SoundBankFile": "@ $ !ENTER_PATH # Path_EraseSuffix",
+							"MainDir": "@ $ !ENTER_PATH",
+							"MemorySize": "@ ! ByteSize_Str 1024M"
+						}
+					}
+				},
+				"BNK-UnPack": {
+					"Filter": [ [ "file:", "suffix:bnk" ] ],
+					"Tip": {
+						"In": "file - BNK",
+						"Out": "dir - BNK"
+					},
+					"Script": [ {
+							"Type": "Call",
+							"Func": [ "AudioUtil", "SoundBankUtil", "NameMapperMod", "Load" ],
+							"Parm": {
+								"NameMapperFile": [ "@P $ !STORAGE_DIR", "SPCUtil", "SoundBankNameMapper.json" ]
+							}
+						}, {
+							"Type": "Call",
+							"Func": [ "AudioUtil", "SoundBankUtil", "Packer", "UnPack" ],
+							"Parm": {
+								"SoundBankFile": "@ $ !ENTER_PATH",
+								"MainDir": "@ $ !ENTER_PATH #. Path_SetSuffix dir"
+							}
+						} ]
+				},
+				"Cala-ID": {
+					"Filter": [ [ "file:", "suffix:bnk" ] ],
+					"Tip": {
+						"In": "file - BNK",
+						"Out": "dir - BNK"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "AudioUtil", "SoundBankUtil", "CalcID32" ],
+						"Parm": {
+							"Name": "@ ? Str"
+						}
+					}
+				},
+				"Get-BNKName": {
+					"Filter": [ [ "dir:" ] ],
+					"Tip": {
+						"In": "file - BNK",
+						"Out": "dir - BNK"
+					},
+					"Script": [ {
+							"Type": "Call",
+							"Func": [ "NonStdFunc", "GetFileNameNoPathNoSuffixFromDir" ],
+							"Parm": {
+								"SrcDir": "@ $ !ENTER_PATH",
+								"DstFile": "@ $ !ENTER_PATH #. Path_SetSuffix name.json"
+							}
+						} ]
+				},
+				"Get-EventName": {
+					"Filter": [ [ "dir:" ] ],
+					"Tip": {
+						"In": "file - BNK",
+						"Out": "dir - BNK"
+					},
+					"Script": [ {
+							"Type": "Call",
+							"Func": [ "NonStdFunc", "GetEventIDFromPAMDir" ],
+							"Parm": {
+								"SrcDir": "@ $ !ENTER_PATH",
+								"DstFile": "@ $ !ENTER_PATH #. Path_SetSuffix name.json"
+							}
+						} ]
+				}
+			},
+			"WEM Util": {},
+			"Info Util": {
+				"Info-Cpy": {
+					"Filter": [ [ "file:", "suffix:json" ] ],
+					"Tip": {
+						"In": "file - JSON",
+						"Out": "file - JSON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "InfoUtil", "Cpy" ],
+						"Parm": {
+							"InfoType": "@ ? Str",
+							"SrcInfoFile": "@ $ !ENTER_PATH",
+							"DstInfoFile": "@ $ !ENTER_PATH #. Path_SetPrefix ~"
+						}
+					}
+				},
+				"Info-Cnv": {
+					"Filter": [ [ "file:", "suffix:json" ] ],
+					"Tip": {
+						"In": "file - JSON",
+						"Out": "file - JSON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "InfoUtil", "Cnv" ],
+						"Parm": {
+							"SrcInfoType": "@ ? Str",
+							"DstInfoType": "@ ? Str",
+							"SrcInfoFile": "@ $ !ENTER_PATH",
+							"DstInfoFile": "@ $ !ENTER_PATH #. Path_SetPrefix ~",
+							"AppendInfoFile": "@ ? Path_File"
+						}
+					}
+				},
+				"Info-Split": {
+					"Filter": [ [ "file:", "suffix:json" ] ],
+					"Tip": {
+						"In": "file - JSON",
+						"Out": "file - JSON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "InfoUtil", "Split" ],
+						"Parm": {
+							"InfoType": "@ ? Str",
+							"InfoFile": "@ $ !ENTER_PATH",
+							"MainDir": "@ $ !ENTER_PATH # Path_EraseSuffix"
+						}
+					}
+				},
+				"Info-Cat": {
+					"Filter": [ [ "file:", "suffix:json" ] ],
+					"Tip": {
+						"In": "file - JSON",
+						"Out": "file - JSON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "InfoUtil", "Cat" ],
+						"Parm": {
+							"InfoType": "@ ? Str",
+							"InfoFile": "@ $ !ENTER_PATH",
+							"MainDir": "@ $ !ENTER_PATH # Path_EraseSuffix"
+						}
+					}
+				}
+			},
+			"RSB-Patch Util": {
+				"Patch ResInfo": {
+					"Filter": [ [ "dir:", "suffix:rsbpatch" ] ],
+					"Tip": {
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "SpecialMod", "PvZ-2", "RSBPatch", "PatchResInfo" ],
+						"Var": {
+							"DstDir": {
+								"Type": "Path",
+								"Val": "@ ? Path_Dir"
+							}
+						},
+						"Parm": {
+							"PatchFile": "@ $ !ENTER_PATH #. Path_AddLevel Patch.json",
+							"SrcFile": "@ $ DstDir #. Path_AddLevel ResInfoOri.json",
+							"DstFile": "@ $ DstDir #. Path_AddLevel ResInfo.json"
+						}
+					}
+				},
+				"Patch StructInfo": {
+					"Filter": [ [ "dir:", "suffix:rsbpatch" ] ],
+					"Tip": {
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "SpecialMod", "PvZ-2", "RSBPatch", "PatchStructInfo" ],
+						"Var": {
+							"DstDir": {
+								"Type": "Path",
+								"Val": "@ ? Path_Dir"
+							}
+						},
+						"Parm": {
+							"PatchFile": "@ $ !ENTER_PATH #. Path_AddLevel Patch.json",
+							"SrcFile": "@ $ DstDir #. Path_AddLevel StructInfoOri.json",
+							"DstFile": "@ $ DstDir #. Path_AddLevel StructInfo.json"
+						}
+					}
+				},
+				"Patch Res": {
+					"Filter": [ [ "dir:", "suffix:rsbpatch" ] ],
+					"Tip": {
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "SpecialMod", "PvZ-2", "RSBPatch", "PatchRes" ],
+						"Var": {
+							"DstDir": {
+								"Type": "Path",
+								"Val": "@ ? Path_Dir"
+							}
+						},
+						"Parm": {
+							"PatchFile": "@ $ !ENTER_PATH #. Path_AddLevel Patch.json",
+							"StructInfoFile": "@ $ DstDir #. Path_AddLevel StructInfo.json",
+							"SrcResDir": "@ $ !ENTER_PATH #. Path_AddLevel Res",
+							"DstGroupDir": "@ $ DstDir #. Path_AddLevel Group"
+						}
+					}
+				},
+				"Patch OneStep": {
+					"Filter": [ [ "dir:", "suffix:rsbpatch" ] ],
+					"Tip": {
+					},
+					"Script": {
+						"Type": "List",
+						"Var": {
+							"DstDir": {
+								"Type": "Path",
+								"Val": "@ ? Path_Dir"
+							}
+						},
+						"Task": [
+							{
+								"Type": "Call",
+								"Func": [ "SpecialMod", "PvZ-2", "RSBPatch", "PatchRes" ],
+								"Parm": {
+									"PatchFile": "@ $ !ENTER_PATH #. Path_AddLevel Patch.json",
+									"StructInfoFile": "@ $ DstDir #. Path_AddLevel StructInfo.json",
+									"SrcResDir": "@ $ !ENTER_PATH #. Path_AddLevel Res",
+									"DstGroupDir": "@ $ DstDir #. Path_AddLevel Group"
+								}
+							},
+							{
+								"Type": "Call",
+								"Func": [ "SpecialMod", "PvZ-2", "RSBPatch", "PatchResInfo" ],
+								"Parm": {
+									"PatchFile": "@ $ !ENTER_PATH #. Path_AddLevel Patch.json",
+									"SrcFile": "@ $ DstDir #. Path_AddLevel ResInfoOri.json",
+									"DstFile": "@ $ DstDir #. Path_AddLevel ResInfo.json"
+								}
+							},
+							{
+								"Type": "Call",
+								"Func": [ "SpecialMod", "PvZ-2", "RSBPatch", "PatchStructInfo" ],
+								"Parm": {
+									"PatchFile": "@ $ !ENTER_PATH #. Path_AddLevel Patch.json",
+									"SrcFile": "@ $ DstDir #. Path_AddLevel StructInfoOri.json",
+									"DstFile": "@ $ DstDir #. Path_AddLevel StructInfo.json"
+								}
+							}
+						]
+					}
+				}
+			},
+			"PvZ-2 Mod Util": {
+				"Env Intro": {
+					"Filter": [ [ "dir:", "suffix:pvz2mod" ] ],
+					"Tip": {},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "SpecialMod", "PvZ-2", "Mod", "EnvIntro" ],
+						"Parm": {
+							"EnvFile": "@ $ PVZ2_MOD_ENV_FILE"
+						}
+					}
+				},
+				"Env Outro": {
+					"Filter": [ [ "dir:", "suffix:pvz2mod" ] ],
+					"Tip": {
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "SpecialMod", "PvZ-2", "Mod", "EnvOutro" ],
+						"Parm": {
+							"EnvFile": "@ $ PVZ2_MOD_ENV_FILE"
+						}
+					}
+				},
+				"Apply Mod": {
+					"Filter": [ [ "dir:", "suffix:pvz2mod" ] ],
+					"Tip": {
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "SpecialMod", "PvZ-2", "Mod", "Apply" ],
+						"Var": {
+							"DstDir": {
+								"Type": "Path",
+								"Val": []
+							}
+						},
+						"Parm": {
+							"ModDir": "@ $ !ENTER_PATH",
+							"EnvFile": "@ $ PVZ2_MOD_ENV_FILE"
+						}
+					}
+				}
+			},
+			"Other": {
+				"WEM DeCode": {
+					"Filter": [ [ "file:", "suffix:wem" ] ],
+					"Tip": {
+						"In": "file - Non-Compress",
+						"Out": "file - Compress-Ed"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "NonStdFunc", "CnvWEM" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH",
+							"DstFile": "@ $ !ENTER_PATH #. Path_SetPrefix ~"
+						}
+					}
+				}
+			},
+			"Misc Util": {
+				"RSB UnPack [Simple]": {
+					"Filter": [ [ "file", "suffix:rsb" ], [ "file:", "suffix:obb" ], [ "file:", "suffix:smf" ] ],
+					"Tip": {
+						"#Tip#": "You can extract Packages by a bool input",
+						"In": "file - RSB",
+						"Out": "dir - RSB"
+					},
+					"Script": {
+						"Type": "Link",
+						"Script": [ "@P $ STD_SCRIPT_DIR", "MyScripts", "RSBExtSimple.sus" ],
+						"Var": {
+							"=File": {
+								"Type": "Path",
+								"Val": "@ $ !ENTER_PATH"
+							}
+						}
+					}
+				},
+				"RSB Build [Simple]": {
+					"Filter": [ [ "dir:", "suffix:dir", "substr:.rsb.dir" ], [ "dir:", "suffix:dir", "substr:.obb.dir" ], [ "dir:", "suffix:dir", "substr:.smf.dir" ] ],
+					"Tip": {
+						"#Tip#": "You can generate the resources.json from the game using the ResInfo.json",
+						"#Tip2#": "All the json files found at Res/Packages will be converted to rton automatically",
+						"In": "dir - RSB",
+						"Out": "file - RSB"
+					},
+					"Script": {
+						"Type": "Link",
+						"Script": [ "@P $ STD_SCRIPT_DIR", "MyScripts", "RSBBuildSimple.sus" ],
+						"Var": {
+							"=File": {
+								"Type": "Path",
+								"Val": "@ $ !ENTER_PATH # Path_EraseSuffix"
+							},
+							"=Dir": {
+								"Type": "Path",
+								"Val": "@ $ !ENTER_PATH"
+							}
+						}
+					}
+				},
+				"Res-ResInfo Cnv": {
+					"Filter": [ [ "file:", "suffix:json" ] ],
+					"Tip": {
+						"#Tip#": "Convert resources.json to resinfo.json or resinfo.json to resources.json"
+						"In": "file - resources.json - resinfo.json",
+						"Out": "file - JSON"
+					},
+					"Script": {
+						"Type": "Link",
+						"Script": [ "@P $ STD_SCRIPT_DIR", "MyScripts", "ResInfoCnv.sus" ],
+						"Var": {
+							"=File": {
+								"Type": "Path",
+								"Val": "@ $ !ENTER_PATH"
+							}
+						}
+					}
+				},
+				"ResInfo Split": {
+					"Filter": [ [ "file:", "suffix:json" ] ],
+					"Tip": {
+						"#Tip#": "Split in subfiles the ResInfo.json file"
+						"In": "file - JSON",
+						"Out": "dir - Split ResInfo"
+					},
+					"Script": {
+						"Type": "Link",
+						"Script": [ "@P $ STD_SCRIPT_DIR", "MyScripts", "ResInfoSplit.sus" ],
+						"Var": {
+							"=File": {
+								"Type": "Path",
+								"Val": "@ $ !ENTER_PATH"
+							}
+						}
+					}
+				},
+				"ResInfo Merge": {
+					"Filter": [ [ "dir:" ] ],
+					"Tip": {
+						"#Tip#": "Merge all the splited subfiles from the ResInfo.json file"
+						"In": "dir",
+						"Out": "file - JSON"
+					},
+					"Script": {
+						"Type": "Link",
+						"Script": [ "@P $ STD_SCRIPT_DIR", "MyScripts", "ResInfoMerge.sus" ],
+						"Var": {
+							"=Dir": {
+								"Type": "Path",
+								"Val": "@ $ !ENTER_PATH"
+							},
+							"=File": {
+								"Type": "Path",
+								"Val": "@ $ !ENTER_PATH #. Path_SetPrefix ~ #. Path_SetSuffix json"
+							}
+						}
+					}
+				},
+				"IMG-SplitByFolder [Simple]": {
+					"Filter": [ [ "dir" ] ],
+					"Tip": {
+						"In": "dir - Atlas-ResPkgInfo",
+						"Out": "dir - Split-png"
+					},
+					"Script": {
+						"Type": "Link",
+						"Script": [ "@P $ STD_SCRIPT_DIR", "MyScripts", "ImageSplit.sus" ],
+						"Var": {
+							"=Dir": {
+								"Type": "Path",
+								"Val": "@ $ !ENTER_PATH"
+							}
+						}
+					}
+				},
+				"Res Case Renamer": {
+					"Filter": [ [ "dir" ] ],
+					"Tip": {
+						"In": "dir - ResPkgInfo",
+						"Out": "file - *.rton"
+					},
+					"Script": {
+						"Type": "Link",
+						"Script": [ "@P $ STD_SCRIPT_DIR", "MyScripts", "PersonalPurpose", "FileCaseRename.sus" ],
+						"Var": {
+							"=Dir": {
+								"Type": "Path",
+								"Val": "@ $ !ENTER_PATH"
+							}
+						}
+					}
+				},
+				"Packages Decode": {
+					"Filter": [ [ "dir" ] ],
+					"Tip": {
+						"#Tip#": "Convert all packages's rtons to json"
+						"In": "dir",
+						"Out": "file - *.json"
+					},
+					"Script": {
+						"Type": "Link",
+						"Script": [ "@P $ STD_SCRIPT_DIR", "MyScripts", "PersonalPurpose", "Packages-r-j.sus" ],
+						"Var": {
+							"=Dir": {
+								"Type": "Path",
+								"Val": "@ $ !ENTER_PATH"
+							}
+						}
+					}
+				}
+			},
+			"Path Util": {
+				"[byPath] RTON to JSON": {
+					"Filter": [ [ "file:", "suffix:util" ] ],
+					"Tip": {
+						"In": "file : *.rton",
+						"Out": "file : *.json"
+					},
+					"Script": {
+						"Type": "Link",
+						"Script": [ "@P $ STD_SCRIPT_DIR", "MyScripts", "byPath", "rton_2_json.sus" ]
+					}
+				},
+				"[byPath] JSON to RTON": {
+					"Filter": [ [ "file:", "suffix:util" ] ],
+					"Tip": {
+						"In": "file : *.json",
+						"Out": "file : *.rton"
+					},
+					"Script": {
+						"Type": "Link",
+						"Script": [ "@P $ STD_SCRIPT_DIR", "MyScripts", "byPath", "json_2_rton.sus" ]
+					}
+				},
+				"[byPath] RSB-Ext": {
+					"Filter": [ [ "file:", "suffix:util" ] ],
+					"Tip": {
+						"In": "file : *.obb *.rsb",
+						"Out": "dir : *.dir"
+					},
+					"Script": {
+						"Type": "Link",
+						"Script": [ "@P $ STD_SCRIPT_DIR", "MyScripts", "RSBExtSimple.sus" ]
+					}
+				},
+				"[byPath] RSB-Build": {
+					"Filter": [ [ "file:", "suffix:util" ] ],
+					"Tip": {
+						"In": "file : StructInfo.json",
+						"Out": "file : *.obb *.rsb"
+					},
+					"Script": {
+						"Type": "Link",
+						"Script": [ "@P $ STD_SCRIPT_DIR", "MyScripts", "RSBBuildSimple.sus" ]
+					}
+				},
+				"[byPath] PGSR-Ext": {
+					"Filter": [ [ "file:", "suffix:util" ] ],
+					"Tip": {
+						"In": "file : *.rsgp",
+						"Out": "dir"
+					},
+					"Script": {
+						"Type": "Link",
+						"Script": [ "@P $ STD_SCRIPT_DIR", "MyScripts", "byPath", "pgsr_unpack.sus" ]
+					}
+				},
+				"[byPath] PGSR-Build": {
+					"Filter": [ [ "file:", "suffix:util" ] ],
+					"Tip": {
+						"In": "file : StructInfo.json",
+						"Out": "file : *.rsgp"
+					},
+					"Script": {
+						"Type": "Link",
+						"Script": [ "@P $ STD_SCRIPT_DIR", "MyScripts", "byPath", "pgsr_pack.sus" ]
+					}
+				}
+			}
+		},
+		"BatchOption": {
+			"JSON Util": {
+				"JSON-Format": {
+					"Filter": [ [ "file:", "suffix:json" ], [ ":", "suffix:suc" ], [ ":", "suffix:sus" ], [ ":", "suffix:surps" ] ],
+					"Tip": {
+						"In": "dir - Source-JSON",
+						"Out": "dir - Format-JSON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "JSONUtil", "FmtFile" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH_IN",
+							"DstFile": "@ $ !ENTER_PATH_OUT"
+						}
+					}
+				}
+			},
+			"RTON Util": {
+				"RTON-EnCode": {
+					"Filter": [ [ "file:", "suffix:json" ] ],
+					"Tip": {
+						"In": "dir - JSON",
+						"Out": "dir - RTON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "RTONUtil", "Encoder", "EnCode" ],
+						"Parm": {
+							"JSONFile": "@ $ !ENTER_PATH_IN",
+							"RTONFile": "@ $ !ENTER_PATH_OUT # Path_EraseSuffix #. Path_SetSuffix rton",
+							"UseCacheStr": true,
+							"UseSpecialTypeForRTID": true,
+							"MemorySize": "@ ! ByteSize_Str 64M"
+						}
+					}
+				},
+				"RTON-DeCode": {
+					"Filter": [ [ "file:", "suffix:rton" ] ],
+					"Tip": {
+						"In": "dir - RTON",
+						"Out": "dir - JSON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "RTONUtil", "Encoder", "DeCode" ],
+						"Parm": {
+							"RTONFile": "@ $ !ENTER_PATH_IN",
+							"JSONFile": "@ $ !ENTER_PATH_OUT # Path_EraseSuffix #. Path_SetSuffix json",
+							"RTONDataOfs": 0
+						}
+					}
+				},
+				"RTON-EnCrypt": {
+					"Filter": [ [ "file:", "suffix:rton" ] ],
+					"Tip": {
+						"In": "dir - RTON",
+						"Out": "dir - C-RTON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "RTONUtil", "Encryptor", "EnCrypt" ],
+						"Parm": {
+							"PlainFile": "@ $ !ENTER_PATH_IN",
+							"CipherFile": "@ $ !ENTER_PATH_OUT",
+							"DataBlockSum": 6,
+							"BufBlockSum": 8,
+							"Key": ""
+						}
+					}
+				},
+				"RTON-DeCrypt": {
+					"Filter": [ [ "file:", "suffix:rton" ] ],
+					"Tip": {
+						"In": "dir - C-RTON",
+						"Out": "dir - RTON"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "RTONUtil", "Encryptor", "DeCrypt" ],
+						"Parm": {
+							"CipherFile": "@ $ !ENTER_PATH_IN",
+							"PlainFile": "@ $ !ENTER_PATH_OUT",
+							"Key": ""
+						}
+					}
+				}
+			},
+			"RSB Util": {
+				"SMF-UnCompress": {
+					"Filter": [ [ "file:", "suffix:smf", "substr:.rsb.smf" ] ],
+					"Tip": {
+						"In": "dir - SMF-CompressEd",
+						"Out": "dir - SMF-NonCompress"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "NonStdFunc", "UnCompressRawRSBSMF" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH_IN",
+							"DstFile": "@ $ !ENTER_PATH_OUT"
+						}
+					}
+				}
+			},
+			"IMG Util": {
+				"PTX-EnCode": {
+					"Filter": [ [ "file", "suffix:png" ] ],
+					"Tip": {
+						"In": "dir - PNG",
+						"Out": "dir - PTX"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "PopTexEncoder", "EnCode" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH_IN",
+							"DstFile": "@ $ !ENTER_PATH_OUT # Path_EraseSuffix #. Path_SetSuffix ptx",
+							"Size": "@ ! IntList_ImageSize $ !ENTER_PATH_IN",
+							"TexFmt": "@ ? Str"
+						}
+					}
+				},
+				"PTX-EnCode RGBA32 For Android": {
+					"Filter": [ [ "file", "suffix:png" ] ],
+					"Tip": {
+						"In": "dir - PNG",
+						"Out": "dir - PTX"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "PopTexEncoder", "EnCode" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH_IN",
+							"DstFile": "@ $ !ENTER_PATH_OUT # Path_EraseSuffix #. Path_SetSuffix ptx",
+							"Size": "@ ! IntList_ImageSize $ !ENTER_PATH_IN",
+							"TexFmt": "RGBAd32x8888eB"
+						}
+					}
+				},
+				"PTX-EnCode ETC1+ALPHA For Android": {
+					"Filter": [ [ "file", "suffix:png" ] ],
+					"Tip": {
+						"In": "dir - PNG",
+						"Out": "dir - PTX"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "PopTexEncoder", "EnCode" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH_IN",
+							"DstFile": "@ $ !ENTER_PATH_OUT # Path_EraseSuffix #. Path_SetSuffix ptx",
+							"Size": "@ ! IntList_ImageSize $ !ENTER_PATH_IN",
+							"TexFmt": "RGBcETC1sAd8"
+						}
+					}
+				},
+				"PTX-EnCode ARGB32 For iOS": {
+					"Filter": [ [ "file", "suffix:png" ] ],
+					"Tip": {
+						"In": "dir - PNG",
+						"Out": "dir - PTX"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "PopTexEncoder", "EnCode" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH_IN",
+							"DstFile": "@ $ !ENTER_PATH_OUT # Path_EraseSuffix #. Path_SetSuffix ptx",
+							"Size": "@ ! IntList_ImageSize $ !ENTER_PATH_IN",
+							"TexFmt": "ARGBd32x8888eL"
+						}
+					}
+				},
+				"PTX-EnCode PVRTC-4BPP For iOS": {
+					"Filter": [ [ "file", "suffix:png" ] ],
+					"Tip": {
+						"In": "dir - PNG",
+						"Out": "dir - PTX"
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "ImageUtil", "PopTexEncoder", "EnCode" ],
+						"Parm": {
+							"SrcFile": "@ $ !ENTER_PATH_IN",
+							"DstFile": "@ $ !ENTER_PATH_OUT # Path_EraseSuffix #. Path_SetSuffix ptx",
+							"Size": "@ ! IntList_ImageSize $ !ENTER_PATH_IN",
+							"TexFmt": "RGBAcPVRTC4BPP"
+						}
+					}
+				}
+			},
+			"WEM Util": {
+				"BNK-UnPack": {
+					"Filter": [ [ "file:", "suffix:bnk" ] ],
+					"Tip": {
+					},
+					"Script": [ {
+							"Type": "Call",
+							"Func": [ "AudioUtil", "SoundBankUtil", "NameMapperMod", "Load" ],
+							"Parm": {
+								"NameMapperFile": [ "@P $ !STORAGE_DIR", "SPCUtil", "SoundBankNameMapper.json" ]
+							}
+						}, {
+							"Type": "Call",
+							"Func": [ "AudioUtil", "SoundBankUtil", "Packer", "UnPack" ],
+							"Parm": {
+								"SoundBankFile": "@ $ !ENTER_PATH_IN",
+								"MainDir": "@ $ !ENTER_PATH_OUT #. Path_SetSuffix dir"
+							}
+						} ]
+				},
+				"WEM-DeCode": {
+					"Filter": [ [ "file:", "suffix:wem" ] ],
+					"Tip": {
+					},
+					"Script": {
+						"Type": "Call",
+						"Func": [ "NonStdFunc", "CnvWEM" ],
+						"Parm": {
+							"SrcFile": "@ $ !",
+							"DstFile": "@ $ ! # Path_EraseSuffix #. Path_SetSuffix .ogg"
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,157 @@
+{
+	"Type": "List",
+	"Var": {
+		"ExtractOrGetGroup": {
+			"Cmt": "解包RSB或从已解包文件夹中提取Group资源？",
+			"Type": "Bool",
+			"Val": "@ ? Bool"
+		},
+		"UseReNameCase": {
+			"Cmt": "是否在解包后重命名Res文件夹下资源文件，以区别大小写？（直接解包得到的资源文件名均为大写）这会花费更长时间",
+			"Type": "Bool",
+			"Val": "@ ? Bool"
+		},
+		"File": {
+			"Type": "Path",
+			"Val": "@ ? Path_File"
+		},
+		"Dir": {
+			"Type": "Path",
+			"Val": "@ $ File #. Path_SetSuffix dir"
+		},
+		"ResInfoFile": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "ResInfo.json" ]
+		},
+		"ResInfoDir": {
+			"Type": "Path",
+			"Val": "@ $ ResInfoFile # Path_EraseSuffix"
+		},
+		"StructInfoFile": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "StructInfo.json" ]
+		},
+		"StructInfoDir": {
+			"Type": "Path",
+			"Val": "@ $ StructInfoFile # Path_EraseSuffix"
+		}
+	},
+	"Task": [ {
+			"EnAble": "@ $ ExtractOrGetGroup",
+			"Cmt": "从RSB中获取资源文件",
+			"Type": "List",
+			"Var": {
+				"RawOriResInfoFile": {
+					"Type": "Path",
+					"Val": [ "@P $ Dir", "Res", "properties", "resources.rton" ]
+				},
+				"OriResInfoFile": {
+					"Type": "Path",
+					"Val": "@ $ RawOriResInfoFile #. Path_SetPrefix ~"
+				}
+			},
+			"Task": [ {
+					"EnAble": true,
+					"Type": "Call",
+					"Func": [ "ResPkgUtil", "RSBUtil", "Packer", "UnPack" ],
+					"Parm": {
+						"PkgFile": "@ $ File",
+						"MainDir": "@ $ Dir",
+						"OutPut_Res": true,
+						"OutPut_Packet": true,
+						"OutPut_PacketInfo": false,
+						"OutPut_Group": false,
+						"OutPut_Group_Res": false,
+						"OutPut_Group_Packet": false
+					}
+				}, {
+					"Type": "Call",
+					"Func": [ "RTONUtil", "Encoder", "DeCode" ],
+					"Parm": {
+						"RTONFile": "@ $ RawOriResInfoFile",
+						"JSONFile": "@ $ OriResInfoFile",
+						"RTONDataOfs": 0
+					}
+				}, {
+					"Type": "Call",
+					"Func": [ "InfoUtil", "Cnv" ],
+					"Parm": {
+						"SrcInfoType": "ResPkgInfo_Ori",
+						"DstInfoType": "ResPkgInfo",
+						"SrcInfoFile": "@ $ OriResInfoFile",
+						"DstInfoFile": "@ $ ResInfoFile",
+						"AppendInfoFile": [ "NULL" ]
+					}
+				}, {
+					"Type": "Call",
+					"Func": [ "InfoUtil", "Split" ],
+					"Parm": {
+						"InfoType": "ResPkgInfo",
+						"InfoFile": "@ $ ResInfoFile",
+						"MainDir": "@ $ ResInfoDir"
+					}
+				}, {
+					"Type": "Call",
+					"Func": [ "InfoUtil", "Split" ],
+					"Parm": {
+						"InfoType": "RSBStructInfo",
+						"InfoFile": "@ $ StructInfoFile",
+						"MainDir": "@ $ StructInfoDir"
+					}
+				}, {
+					"EnAble": "@ $ UseReNameCase",
+					"Cmt": "重命名Res文件夹内资源文件",
+					"Type": "Call",
+					"Func": [ "NonStdFunc", "ReNameFileCase" ],
+					"Parm": {
+						"OriListDataFile": "@ $ ResInfoFile",
+						"TargetDir": [ "@P $ Dir", "Res" ]
+					}
+				} ]
+		}, {
+			"EnAble": "@ $ ExtractOrGetGroup # Bool_Inverse",
+			"Cmt": "获取资源文件",
+			"Type": "List",
+			"Var": {
+				"Name": {
+					"Type": "Str",
+					"Val": "@ ? Str"
+				},
+				"SrcResDir": {
+					"Type": "Path",
+					"Val": [ "@P $ Dir", "Group", "@ $ Name" ]
+				},
+				"SrcResInfoDir": {
+					"Type": "Path",
+					"Val": [ "@P $ ResInfoDir", "Include", "@ $ Name" ]
+				},
+				"SrcStructInfoDir": {
+					"Type": "Path",
+					"Val": [ "@P $ StructInfoDir", "Include", "@ $ Name" ]
+				}
+			},
+			"Task": [ {
+					"Type": "Call",
+					"Func": [ "DevUtil", "Cpy", "Dir" ],
+					"Parm": {
+						"SrcPath": "@ $ SrcResDir",
+						"DstPath": [ "@P $ Dir", "GroupExt", "@ $ Name", "Res", "@ $ Name" ]
+					}
+				}, {
+					"Type": "Call",
+					"Func": [ "DevUtil", "Cpy", "Dir" ],
+					"Parm": {
+						"SrcPath": "@ $ SrcResInfoDir",
+						"DstPath": [ "@P $ Dir", "GroupExt", "@ $ Name", "ResInfo", "@ $ Name" ]
+					}
+				}, {
+					"EnAble": true,
+					"Type": "Call",
+					"Func": [ "DevUtil", "Cpy", "Dir" ],
+					"Parm": {
+						"SrcPath": "@ $ SrcStructInfoDir",
+						"DstPath": [ "@P $ Dir", "GroupExt", "@ $ Name", "StructInfo", "@ $ Name" ]
+					}
+				} ]
+		} ]
+}

@@ -1,0 +1,86 @@
+{
+	"Cmt": "此脚本用于解包一个RSB文件(后缀为 rsb/obb/rsb.smf)，结果保存在同级目录(文件名+dir后缀)内",
+	"Type": "List",
+	"Var": {
+		"File": {
+			"Type": "Path",
+			"Val": "@ ? Path_File"
+		},
+		"Dir": {
+			"Type": "Path",
+			"Val": "@ $ File #. Path_SetSuffix dir"
+		},
+		"ResInfoFile": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "ResInfo.json" ]
+		},
+		"ResInfoDir": {
+			"Type": "Path",
+			"Val": "@ $ ResInfoFile # Path_EraseSuffix"
+		},
+		"StructInfoFile": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "StructInfo.json" ]
+		},
+		"StructInfoDir": {
+			"Type": "Path",
+			"Val": "@ $ StructInfoFile # Path_EraseSuffix"
+		},
+		"RawOriResInfoFile": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "Res", "properties", "resources.rton" ]
+		},
+		"OriResInfoFile": {
+			"Type": "Path",
+			"Val": "@ $ RawOriResInfoFile #. Path_SetPrefix ~"
+		}
+	},
+	"Task": [ {
+			"Type": "Call",
+			"Func": [ "ResPkgUtil", "RSBUtil", "Packer", "UnPack" ],
+			"Parm": {
+				"PkgFile": "@ $ File",
+				"MainDir": "@ $ Dir",
+				"OutPut_Res": true,
+				"OutPut_Packet": true,
+				"OutPut_PacketInfo": false,
+				"OutPut_Group": false,
+				"OutPut_Group_Res": false,
+				"OutPut_Group_Packet": false
+			}
+		}, {
+			"Type": "Call",
+			"Func": [ "RTONUtil", "Encoder", "DeCode" ],
+			"Parm": {
+				"RTONFile": "@ $ RawOriResInfoFile",
+				"JSONFile": "@ $ OriResInfoFile",
+				"RTONDataOfs": 0
+			}
+		}, {
+			"Type": "Call",
+			"Func": [ "InfoUtil", "Cnv" ],
+			"Parm": {
+				"SrcInfoType": "ResPkgInfo_Ori",
+				"DstInfoType": "ResPkgInfo",
+				"SrcInfoFile": "@ $ OriResInfoFile",
+				"DstInfoFile": "@ $ ResInfoFile",
+				"AppendInfoFile": []
+			}
+		}, {
+			"Type": "Call",
+			"Func": [ "InfoUtil", "Split" ],
+			"Parm": {
+				"InfoType": "ResPkgInfo",
+				"InfoFile": "@ $ ResInfoFile",
+				"MainDir": "@ $ ResInfoDir"
+			}
+		}, {
+			"Type": "Call",
+			"Func": [ "InfoUtil", "Split" ],
+			"Parm": {
+				"InfoType": "RSBStructInfo",
+				"InfoFile": "@ $ StructInfoFile",
+				"MainDir": "@ $ StructInfoDir"
+			}
+		} ]
+}

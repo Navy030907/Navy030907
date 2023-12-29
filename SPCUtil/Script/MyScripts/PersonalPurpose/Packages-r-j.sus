@@ -1,0 +1,68 @@
+{
+	"Type": "List",
+	"Var": {
+		"Dir": {
+			"Type": "Path",
+			"Val": "@ ? Path_Dir"
+		},
+		"RTONDir": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "Res", "packages" ]
+		},
+		"JSONDir": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "PackagesCnv" ]
+		},
+		"TmpDir": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "Tmp", "packages" ]
+		},
+		"TmpDirD": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "Tmp" ]
+		},
+		"RTONList": {
+			"Type": "[Path",
+			"Val": "@ ! PathList_File $ RTONDir #. PathList_FilterSuffix rton"
+		},
+		"Counter": {
+			"Type": "Int",
+			"Val": 0
+		}
+	},
+	"Task": [ {
+			"Type": "Call",
+			"Func": [ "DevUtil", "Cpy", "Dir" ],
+			"Parm": {
+				"SrcPath": "@ $ RTONDir",
+				"DstPath": "@ $ TmpDir"
+			}
+		}, {
+			"Type": "Call",
+			"Loop": [ "@ $ Counter", "@ $] RTONList" ],
+			"ReVarIntro": {
+				"Counter": 0
+			},
+			"Var": {
+				"NewCounter": {
+					"Type": "Int",
+					"Val": "@ $ Counter #. Int_Add 1"
+				}
+			},
+			"ReVarAfter": {
+				"Counter": "@ $ NewCounter"
+			},
+			"Func": [ "RTONUtil", "Encoder", "DeCode" ],
+			"Parm": {
+				"RTONFile": "@ $ TmpDir #* Path_CatLevel $[* RTONList $ Counter",
+				"JSONFile": "@ $ JSONDir #* Path_CatLevel $[* RTONList $ Counter # Path_EraseSuffix #. Path_SetSuffix json",
+				"RTONDataOfs": 0
+			}
+		}, {
+			"Type": "Call",
+			"Func": [ "DevUtil", "ReMov", "Dir" ],
+			"Parm": {
+				"Path": "@ $ TmpDirD"
+			}
+		} ]
+}

@@ -1,0 +1,43 @@
+{
+	"Type": "List",
+	"Var": {
+		"Dir": {
+			"Type": "Path",
+			"Val": "@ ? Path_Dir"
+		},
+		"AtlasDir": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "Atlas" ]
+		},
+		"ImageDir": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "Image" ]
+		}
+	},
+	"Task": [ {
+		"Type": "Call",
+		"Func": [ "InfoUtil", "Cnv" ],
+		"Parm": {
+			"SrcInfoType": "ResPkgInfo",
+			"DstInfoType": "AtlasInfoList",
+			"SrcInfoFile": [ "@P $ Dir", "ResInfo.json" ],
+			"DstInfoFile": [ "@P $ Dir", "ImageList.json" ],
+			"AppendInfoFile": []
+		}
+	}, {
+		"Type": "Call",
+		"Func": [ "ImageUtil", "Spliter", "SplitByAtlasInfoList" ],
+		"Parm": {
+			"AtlasInfoListFile": [ "@P $ Dir", "ImageList.json" ],
+			"SrcDir": "@ $ Dir",
+			"DstDir": "@ $ Dir",
+			"UseSingleDir": false
+		}
+	}, {
+		"Type": "Call",
+		"Func": [ "DevUtil", "ReMov", "File" ],
+		"Parm": {
+			"Path": [ "@P $ Dir", "ImageList.json" ]
+		}
+	} ]
+}

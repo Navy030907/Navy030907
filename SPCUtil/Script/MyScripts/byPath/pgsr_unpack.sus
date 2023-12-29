@@ -1,0 +1,21 @@
+{
+	"Type": "List",
+	"Var": {
+		"File": {
+			"Type": "Path",
+			"Val": "@ ? Path_File"
+		},
+		"Dir": {
+			"Type": "Path",
+			"Val": "@ $ File #. Path_SetSuffix dir"
+		}
+	},
+	"Task": [ {
+		"Type": "Call",
+		"Func": [ "ResPkgUtil", "RSGPUtil", "Packer", "UnPack" ],
+		"Parm": {
+			"PkgFile": "@ $ File",
+			"MainDir": "@ $ Dir"
+		}
+	} ]
+}

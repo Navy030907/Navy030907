@@ -1,0 +1,22 @@
+{
+	"Type": "List",
+	"Var": {
+		"File": {
+			"Type": "Path",
+			"Val": "@ ? Path_File"
+		},
+		"Dir": {
+			"Type": "Path",
+			"Val": "@ $ File # Path_EraseSuffix"
+		}
+	},
+	"Task": [ {
+		"Type": "Call",
+		"Func": [ "InfoUtil", "Split" ],
+		"Parm": {
+			"InfoType": "ResPkgInfo",
+			"InfoFile": "@ $ File",
+			"MainDir": "@ $ Dir"
+		}
+	} ]
+}

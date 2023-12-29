@@ -1,0 +1,16 @@
+{
+	"Cmt": "此脚本用于解包一个RSGP文件，结果保存在同级目录(文件名+dir后缀)内",
+	"Type": "Call",
+	"Func": [ "ResPkgUtil", "RSGPUtil", "Packer", "UnPack" ],
+	"Var": {
+		"PkgFile": {
+			"Cmt": "选择RSGP",
+			"Type": "Path",
+			"Val": "@ ? Path_File"
+		}
+	},
+	"Parm": {
+		"PkgFile": "@ $ PkgFile",
+		"MainDir": "@ $ PkgFile #. Path_SetSuffix dir"
+	}
+}

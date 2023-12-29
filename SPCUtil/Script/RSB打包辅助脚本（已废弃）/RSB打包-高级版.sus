@@ -1,0 +1,84 @@
+{
+	"Cmt": "生成RSB",
+	"Type": "List",
+	"Var": {
+		"ReGenMANIFESTGROUP": {
+			"Cmt": "是否重新生成resources.json？",
+			"Type": "Bool",
+			"Val": "@ ? Bool"
+		},
+		"File": {
+			"Cmt": "选择RSB文件",
+			"Type": "Path",
+			"Val": "@ ? Path_File"
+		},
+		"Dir": {
+			"Type": "Path",
+			"Val": "@ $ File #. Path_SetSuffix dir"
+		},
+		"PkgResInfoFile": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "ResInfo.json" ]
+		},
+		"PkgStructInfoFile": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "StructInfo.json" ]
+		},
+		"RawOriResInfoFile": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "Res", "properties", "resources.rton" ]
+		},
+		"OriResInfoFile": {
+			"Type": "Path",
+			"Val": "@ $ RawOriResInfoFile #. Path_SetPrefix ~"
+		},
+		"MANIFEST_PacketFile": {
+			"Type": "Path",
+			"Val": [ "@P $ Dir", "Packet", "__MANIFESTGROUP__.rsgp" ]
+		}
+	},
+	"Task": [ {
+			"EnAble": "@ $ ReGenMANIFESTGROUP",
+			"Type": "Call",
+			"Func": [ "InfoUtil", "Cnv" ],
+			"Parm": {
+				"SrcInfoType": "ResPkgInfo",
+				"DstInfoType": "ResPkgInfo_Ori",
+				"SrcInfoFile": "@ $ PkgResInfoFile",
+				"DstInfoFile": "@ $ OriResInfoFile",
+				"AppendInfoFile": []
+			}
+		}, {
+			"EnAble": "@ $ ReGenMANIFESTGROUP",
+			"Type": "Call",
+			"Func": [ "RTONUtil", "Encoder", "EnCode" ],
+			"Parm": {
+				"JSONFile": "@ $ OriResInfoFile",
+				"RTONFile": "@ $ RawOriResInfoFile",
+				"UseCacheStr": true,
+				"UseSpecialTypeForRTID": false,
+				"GetAllStrToTop": false,
+				"MemorySize": "@ ! ByteSize_Str 64M"
+			}
+		}, {
+			"EnAble": "@ $ ReGenMANIFESTGROUP",
+			"Type": "Call",
+			"Func": [ "DevUtil", "ReMov", "File" ],
+			"Parm": {
+				"Path": "@ $ MANIFEST_PacketFile"
+			}
+		}, {
+			"Cmt": "暂停中，请构造__MANIFESTGROUP__.rsgp后继续本次打包...",
+			"Type": "Call",
+			"Func": [ "Pause" ],
+			"Parm": {}
+		}, {
+			"Type": "Call",
+			"Func": [ "ResPkgUtil", "RSBUtil", "Packer", "Pack_Trial" ],
+			"Parm": {
+				"PkgFile": "@ $ File",
+				"MainDir": "@ $ Dir",
+				"MemorySize": "@ ! ByteSize_Str 1G"
+			}
+		} ]
+}
